@@ -6,9 +6,10 @@ import { Button } from "react-bootstrap";
 // Styles
 import "./VehicleCard.css";
 
-// This component is a component for vehicles cards, and it also serves as a form for every vehicle that user has but only if editing props is passed down to it
+// This component is a component for vehicles cards, and it also serves as a form for every vehicle that user has but only if editing is true
 
 import { inject, observer } from "mobx-react";
+
 @inject("rootStore")
 @observer
 class VehicleCard extends Component {
