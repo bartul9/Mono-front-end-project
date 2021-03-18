@@ -1,9 +1,8 @@
 #CreateMakeCard-modal {
-  width: 370px;
 }
 
 #CreateMakeCard-modal form {
-  padding: 0px 10px 30px 10px;
+  padding: 0px 10px 70px 10px;
   display: flex;
   height: 350px;
   flex-direction: column;
@@ -16,21 +15,32 @@
   position: relative;
 }
 
-#CreateMakeCard-modal form h2 {
-  float: left;
+#toggleMakeList {
+  position: relative;
+  top: 33px;
+  right: -110px;
+  transition: 200ms;
+  color: #007bff;
+  width: 70px;
+}
+
+#toggleMakeList:hover {
+  cursor: pointer;
+  color: #17a2b8;
 }
 
 .CreateMakeCard-year {
-  position: absolute;
-  left: 180px;
-  top: 42.4%;
-  display: flex;
-  flex-direction: row;
-  width: 100px;
+  position: relative;
+  top: 177px;
+  right: -110px;
+  transition: 200ms;
+  color: #007bff;
+  width: 70px;
 }
 
-.CreateMakeCard-year span:hover {
+.CreateMakeCard-year:hover {
   cursor: pointer;
+  color: #17a2b8;
 }
 
 .CreateMakeCard-inputs {
@@ -46,7 +56,7 @@
 
 .CreateMakeCard-inputs div input {
   background-color: rgba(255, 255, 255, 0.7);
-  width: 200px;
+  width: 280px;
   outline-style: none;
   border: 1px solid black;
   border-radius: 5px;
@@ -54,10 +64,11 @@
 
 .CreateMakeCard-inputs div select {
   background-color: rgba(255, 255, 255, 0.7);
-  width: 200px;
+  width: 280px;
   outline-style: none;
   border: 1px solid black;
   border-radius: 5px;
+  height: 28px;
 }
 
 .CreateMakeCard-inputs div label {
@@ -72,7 +83,6 @@
 }
 
 #CreateMakeCard-modal form button {
-  margin: 0px 2px;
   position: relative;
   top: 20px;
   left: 3px;
@@ -93,4 +103,10 @@
   transform: rotateY(50deg);
   opacity: 0.5;
   cursor: pointer;
+}
+
+@media (max-with: 390px) {
+  #CreateMakeCard-modal {
+    width: 350px;
+  }
 }
