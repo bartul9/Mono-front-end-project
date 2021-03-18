@@ -1,14 +1,15 @@
 import { observable } from "mobx";
 
+// UUID for unique ID for every make
 import { v4 as uuid } from "uuid";
 
 class CreateMakeCardStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
-    this.makeStore = rootStore.makeStore;
     this.storeData = observable({
       editing: false,
-      dateFormat: false,
+      toggleDateFormat: false,
+      toggleMakeList: false,
       makeData: {
         make: "",
         country: "",
@@ -20,6 +21,8 @@ class CreateMakeCardStore {
 
   resetInputs = () => {
     this.storeData.editing = false;
+    this.storeData.toggleDateFormat = false;
+    this.storeData.toggleMakeList = false;
     this.storeData.makeData = {
       make: "",
       country: "",
@@ -28,17 +31,24 @@ class CreateMakeCardStore {
     };
   };
 
-  handleDateFormatChange = () => {
-    this.storeData.dateFormat = !this.storeData.dateFormat;
+  handleToggleDateFormat = () => {
+    this.storeData.toggleDateFormat = !this.storeData.toggleDateFormat;
   };
 
-  handleClick = () => {
+  handleToggleMakeList = () => {
+    this.storeData.toggleMakeList = !this.storeData.toggleMakeList;
+  };
+
+  // Toggle modal display and check if there was warningMessage showing, if true clean it on close
+  handleToggleMakeModal = () => {
     this.storeData.editing = !this.storeData.editing;
     if (!this.storeData.editing) {
-      this.rootStore.mainStore.storeData.showingMessage = false;
+      this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
+      this.resetInputs();
     }
   };
 
+  // Function for changing date format into "January 17, 2020" or returning just year if founded date only contains year
   changeDateFormat = (date) => {
     const months = [
       "January",
@@ -54,13 +64,16 @@ class CreateMakeCardStore {
       "November",
       "December",
     ];
-    const checkZero = (num) => (num[0] === 0 ? num[1] : num);
+
+    // Check if first number is 0 if true return num without zero, if false return num
+    const checkZero = (num) =>
+      num.toString().split("")[0] == 0 ? num[1] : num;
 
     if (date.length < 5) return date;
 
     const year = date.slice(0, 4);
     const month = months.splice(checkZero(date.slice(5, 7)) - 1, 1);
-    const day = date.slice(checkZero(-2));
+    const day = checkZero(date.slice(-2));
 
     return `${month[0]} ${day}, ${year}`;
   };
@@ -73,24 +86,41 @@ class CreateMakeCardStore {
     this.updateProperty(event.target.name, event.target.value);
   };
 
-  // handleSubmit function => If all inputs are filled update vehicles array in the store with new created vehicle. Clean local state, so all inputs are empty, and state is clean, and call displayCreateNewVehicle function which closes the modal window
-
+  // If all inputs are valid check if make already exist if true show warningMessage if false => change date format, and push object to makeStore
   handleSubmit = (e) => {
     e.preventDefault();
+
     if (
       this.rootStore.sharedFunctionsStore.checkValidInputs(
         this.storeData.makeData
       )
     ) {
-      this.makeStore.storeData.makes.push({
-        ...this.storeData.makeData,
-        founded: this.changeDateFormat(this.storeData.makeData.founded),
-        id: uuid(),
-      });
-      this.resetInputs();
+      if (
+        !this.rootStore.makeStore.storeData.makes.some(
+          (make) => make.make === this.storeData.makeData.make
+        )
+      ) {
+        this.rootStore.makeStore.storeData.makes.push({
+          ...this.storeData.makeData,
+          founded: this.changeDateFormat(this.storeData.makeData.founded),
+          id: uuid(),
+        });
+        this.resetInputs();
+        this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
+      } else {
+        this.rootStore.warningMessageStore.setWarningMessage(
+          true,
+          "That make already exists",
+          "backgroundBlue"
+        );
+        return;
+      }
     } else {
-      this.rootStore.mainStore.storeData.showingMessage = true;
-      this.rootStore.mainStore.storeData.error = "All inputs must be filled";
+      this.rootStore.warningMessageStore.setWarningMessage(
+        true,
+        "All inputs must be filled",
+        "backgroundBlue"
+      );
     }
   };
 }
