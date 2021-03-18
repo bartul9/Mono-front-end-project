@@ -138,25 +138,12 @@ class MainStore {
       img: lamborghini_diablo,
     },
   ];
-  // Main data stored in storeData object which is observable so the app can react to any changes
   storeData = observable({
     showingVehicles: [...this.vehicles],
     showAllVehicles: false,
-    displayingCreateNewVehicle: false,
     isEditing: false,
     makePage: false,
-    showingMessage: false,
-    error: "",
   });
-
-  // Function for toggling modal display
-  displayCreateNewVehicle = () => {
-    this.storeData.displayingCreateNewVehicle = !this.storeData
-      .displayingCreateNewVehicle;
-    if (this.storeData.displayingCreateNewVehicle === false) {
-      this.storeData.showingMessage = false;
-    }
-  };
 }
 
 export default MainStore;
