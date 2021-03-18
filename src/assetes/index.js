@@ -5,3 +5,4 @@ export { default as aston_transparent } from "./aston-transparent.png";
 export { default as backToTop } from "./back-to-top.png";
 export { default as create_icon } from "./create.png";
 export { default as factory_icon } from "./car-factory.jpg";
+export { default as makeToTop } from "./make-to-top.png";
