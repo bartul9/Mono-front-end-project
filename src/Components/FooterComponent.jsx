@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Styles
 import "./FooterComponent.css";
 
-// Back to top img
+// Back to top image
 import { backToTop } from "../assetes/index";
 
 import { inject, observer } from "mobx-react";
@@ -20,8 +20,6 @@ class FooterComponent extends Component {
     const {
       wrongSearchInputs,
     } = this.props.rootStore.vehicleContainerStore.storeData;
-
-    // Change toTop image position depanding if all vehicles are shown or not
 
     const footer = (
       <footer className="FooterComponent">
