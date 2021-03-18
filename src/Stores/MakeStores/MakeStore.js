@@ -19,6 +19,7 @@ class MakeStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.storeData = observable({
+      scrolling: false,
       makes: [
         {
           make: "BMW",
