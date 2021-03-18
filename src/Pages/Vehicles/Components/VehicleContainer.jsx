@@ -3,12 +3,10 @@ import React, { Component } from "react";
 // Styles
 import "./VehicleContainer.css";
 
-import { aston_transparent } from "../../../assetes/index";
-
 // Components
+import SortingFilteringComponent from "./SortingFilteringComponent";
 import VehicleCard from "./VehicleCard";
 import Pagination from "./Pagination";
-import SortingFilteringComponent from "./SortingFilteringComponent";
 
 // This component serves as a container for displaying vehicles cards
 
