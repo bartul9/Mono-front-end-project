@@ -1,21 +1,27 @@
-import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 
+// Styles
 import "./WarningMessage.css";
+
+import { inject, observer } from "mobx-react";
 
 @inject("rootStore")
 @observer
 class WarningMessage extends Component {
   render() {
-    const { showingMessage, error } = this.props.rootStore.mainStore.storeData;
-    const { backgroundClr } = this.props;
+    const {
+      showingMessage,
+      messageText,
+      messageColorId,
+    } = this.props.rootStore.warningMessageStore.storeData;
+
     return (
       <div
         style={showingMessage ? { top: "2px" } : { top: "-50%" }}
         className="WarningMessage"
-        id={backgroundClr}
+        id={messageColorId}
       >
-        <h2>{error}</h2>
+        <h2>{messageText}</h2>
       </div>
     );
   }
