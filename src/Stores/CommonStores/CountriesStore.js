@@ -47,7 +47,6 @@ const countryList = [
   "Colombia",
   "Comoros",
   "Congo",
-  "Congo",
   "Cook Islands",
   "Costa Rica",
   "Croatia",
