@@ -1,48 +1,34 @@
 import React, { Component } from "react";
+
 // Styles
 import "./EditPage.css";
-// Components
-import FooterComponent from "../../../Components/FooterComponent";
-import VehicleContainer from "../Components/VehicleContainer";
-import WarningMessage from "../../../Components/WarningMessage";
 
+// Components
+import HeaderComponent from "../../../Components/HeaderComponent";
+import WarningMessage from "../../../Components/WarningMessage";
+import VehicleContainer from "../Components/VehicleContainer";
+import FooterComponent from "../../../Components/FooterComponent";
+
+// Garage background image
 import { editing_garage } from "../../../images/index";
 
-// Inject and Observer from mobx
 import { inject, observer } from "mobx-react";
-import HeaderComponent from "../../../Components/HeaderComponent";
 
 @inject("rootStore")
 @observer
 class Edit extends Component {
-  resetData(isEditing) {
-    this.props.rootStore.mainStore.storeData.isEditing = isEditing;
-    if (this.props.rootStore.mainStore.vehicles.length < 9) {
-      this.props.rootStore.mainStore.storeData.showAllVehicles = true;
-    } else {
-      this.props.rootStore.mainStore.storeData.showAllVehicles = false;
-    }
-    this.props.rootStore.vehicleContainerStore.storeData.currentPage = 1;
-    this.props.rootStore.vehicleContainerStore.storeData.postsPerPage = 8;
-    this.props.rootStore.vehicleContainerStore.storeData.searchName = "";
-    this.props.rootStore.mainStore.storeData.showingVehicles = this.props.rootStore.mainStore.vehicles;
-    this.props.rootStore.vehicleContainerStore.storeData.sortingByYear = false;
-    this.props.rootStore.vehicleContainerStore.storeData.sortingByHorsepower = true;
-    this.props.rootStore.vehicleCardStore.storeData.editingInputs.editingCard = false;
-    this.props.rootStore.mainStore.storeData.showingMessage = false;
-  }
-
+  // When component mounts and unmounts clean up the container and reset all inputs
   componentDidMount() {
-    this.resetData(true);
+    this.props.rootStore.vehicleContainerStore.resetData(true);
   }
 
   componentWillUnmount() {
-    this.resetData(false);
+    this.props.rootStore.vehicleContainerStore.resetData(false);
   }
   render() {
     return (
       <main className="EditPage">
-        <WarningMessage backgroundClr={"backgroundBlue"} />
+        <WarningMessage />
         <HeaderComponent
           text={"Editing"}
           background={editing_garage}
