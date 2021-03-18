@@ -6,4 +6,21 @@
   justify-content: space-evenly;
   background-color: rgba(0, 0, 0, 0.05);
   min-height: 91vh;
+  padding-top: 10px;
+}
+
+.MakePage-toTop {
+  position: fixed;
+  right: -20px;
+  bottom: 10px;
+  transition: 200ms;
+}
+
+.MakePage-toTop img {
+  width: 100px;
+}
+
+.MakePage-toTop:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
