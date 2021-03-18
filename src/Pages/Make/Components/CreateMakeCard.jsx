@@ -1,21 +1,31 @@
-import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
+
+// Component for creating new MakeCard
+
+// Bootstrap Button and Modal
 import { Button, Modal } from "react-bootstrap";
 
-import countryList from "../../../Stores/CommonStores/CountriesStore";
-
+// Styles
 import "./CreateMakeCard.css";
+
+// Country and make lists
+import countryList from "../../../Stores/CommonStores/CountriesStore";
+import makeList from "../../../Stores/MakeStores/VehicleMakeList";
+
+import { inject, observer } from "mobx-react";
 
 @inject("rootStore")
 @observer
 class CreateMakeCard extends Component {
   render() {
     const {
-      handleClick,
+      handleToggleMakeModal,
       handleChange,
       handleSubmit,
-      handleDateFormatChange,
+      handleToggleDateFormat,
+      handleToggleMakeList,
     } = this.props.rootStore.createMakeCardStore;
+
     const {
       make,
       founded,
@@ -24,28 +34,49 @@ class CreateMakeCard extends Component {
 
     const {
       editing,
-      dateFormat,
+      toggleDateFormat,
+      toggleMakeList,
     } = this.props.rootStore.createMakeCardStore.storeData;
 
     const form = (
       <Modal
         id="CreateMakeCard-modal"
-        onHide={() => handleClick()}
+        onHide={handleToggleMakeModal}
         show={editing}
         centered
       >
         <form onSubmit={(e) => handleSubmit(e)}>
-          {" "}
           <div className="CreateMakeCard-inputs">
             <div>
+              <span
+                className="CreateMakeCard-year"
+                onClick={handleToggleDateFormat}
+                id="year"
+              >
+                {toggleDateFormat ? "Full Date" : "Only Year"}
+              </span>
+              <span onClick={handleToggleMakeList} id="toggleMakeList">
+                {toggleMakeList ? "Input" : "Make List"}
+              </span>
               <label htmlFor="make">Make</label>
-              <input
-                onChange={(e) => handleChange(e)}
-                value={make}
-                name="make"
-                id="make"
-                type="text"
-              />
+              {toggleMakeList ? (
+                <select id="make" name="make" onChange={(e) => handleChange(e)}>
+                  <option></option>
+                  {makeList.map((make) => (
+                    <option value={make} key={make}>
+                      {make}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  value={make}
+                  id="make"
+                  name="make"
+                  onChange={(e) => handleChange(e)}
+                />
+              )}
             </div>
             <div>
               <label htmlFor="country">Country</label>
@@ -67,7 +98,7 @@ class CreateMakeCard extends Component {
             <div>
               <label htmlFor="founded">Founded</label>
               <input
-                type={dateFormat ? "number" : "date"}
+                type={toggleDateFormat ? "number" : "date"}
                 min={1800}
                 max={2020}
                 onChange={(e) => handleChange(e)}
@@ -75,11 +106,6 @@ class CreateMakeCard extends Component {
                 name="founded"
                 id="founded"
               />
-              <div className="CreateMakeCard-year">
-                <span onClick={() => handleDateFormatChange()} id="year">
-                  {dateFormat ? "Full Date" : "Only Year"}
-                </span>
-              </div>
             </div>
             <div>
               <label htmlFor="logo">Logo</label>
@@ -93,7 +119,11 @@ class CreateMakeCard extends Component {
             </div>
           </div>
           <div>
-            <Button onClick={() => handleClick()} variant="primary">
+            <Button
+              className="mr-1"
+              onClick={handleToggleMakeModal}
+              variant="primary"
+            >
               Back
             </Button>
             <Button type="submit" variant="success">
