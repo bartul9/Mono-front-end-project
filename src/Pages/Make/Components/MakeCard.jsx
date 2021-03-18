@@ -1,10 +1,12 @@
-import { inject, observer } from "mobx-react";
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
 
+// Bootstrap Button
 import { Button } from "react-bootstrap";
 
+// Styles
 import "./MakeCard.css";
+
+import { inject, observer } from "mobx-react";
 
 @inject("rootStore")
 @observer
@@ -13,7 +15,7 @@ class MakeCard extends Component {
     const { make, founded, logo, country, id } = this.props;
     const { deleting } = this.props.rootStore.deleteMakeCardStore.storeData;
     const { deleteMakeCard } = this.props.rootStore.deleteMakeCardStore;
-    console.log(deleteMakeCard);
+
     return (
       <div
         style={
@@ -27,13 +29,11 @@ class MakeCard extends Component {
         className="MakeCard"
       >
         <>
-          <Button
-            style={deleting ? { display: "block" } : { display: "none" }}
-            onClick={() => deleteMakeCard(id)}
-            variant="warning"
-          >
-            Delete
-          </Button>
+          {deleting && (
+            <Button onClick={() => deleteMakeCard(id)} variant="warning">
+              Delete
+            </Button>
+          )}
         </>
 
         <img src={logo} alt={make} />
