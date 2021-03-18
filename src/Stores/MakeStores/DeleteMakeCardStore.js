@@ -5,35 +5,33 @@ class DeleteMakeCardStore {
     this.rootStore = rootStore;
     this.storeData = observable({
       deleting: false,
-      showingMessage: false,
     });
   }
 
+  // When user deletes one of the make cards filter trough the makes and leave out make.id equal to selected id, also filter trough vehicles array and remove all vehicles with deleted make
   deleteMakeCard = (id) => {
-    const deletedMakes = [];
     this.rootStore.makeStore.storeData.makes = this.rootStore.makeStore.storeData.makes.filter(
       (make) => {
-        make.id === id && deletedMakes.push(make.make);
+        make.id === id &&
+          (this.rootStore.mainStore.vehicles = this.rootStore.mainStore.vehicles.filter(
+            (vehicle) => vehicle.make !== make.make
+          ));
         return make.id !== id;
       }
     );
-    deletedMakes.forEach(
-      (make) =>
-        (this.rootStore.mainStore.vehicles = this.rootStore.mainStore.vehicles.filter(
-          (vehicle) => vehicle.make !== make
-        ))
-    );
-    console.log(this.rootStore.makeStore.storeData.makes);
   };
 
+  // When user clicks on Delete Make buton in navbar toggle deleting value if it is true show warningMessage, if false remove it
   handleDeleteClick = () => {
     this.storeData.deleting = !this.storeData.deleting;
     if (this.storeData.deleting === true) {
-      this.rootStore.mainStore.storeData.showingMessage = true;
-      this.rootStore.mainStore.storeData.error =
-        "All vehicles containing deleted make will also be deleted";
+      this.rootStore.warningMessageStore.setWarningMessage(
+        true,
+        "All vehicles containing deleted make will also be deleted",
+        ""
+      );
     } else {
-      this.rootStore.mainStore.storeData.showingMessage = false;
+      this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
     }
   };
 }
