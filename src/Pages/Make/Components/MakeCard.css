@@ -6,12 +6,12 @@
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(207, 207, 207, 0.4);
-  border-radius: 0%;
   background-color: white;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
   margin-bottom: 10px;
   position: relative;
   transition: 200ms;
+  /* border-radius: 10px; */
 }
 
 .MakeCard:hover {
