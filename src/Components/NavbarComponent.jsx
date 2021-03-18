@@ -2,19 +2,17 @@ import React, { Component } from "react";
 
 // Bootstrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { Navbar, Nav, Button, Form, FormControl } from "react-bootstrap";
 
-// Router Links
+// Router Link
 import { Link } from "react-router-dom";
 
 // Styles
 import "./NavbarComponent.css";
 
-//  Logo navbar image
+//  Garage logo image
 import { navbarlogo } from "../assetes/index";
 
-// Mobx inject and observer
 import { inject, observer } from "mobx-react";
 
 @inject("rootStore")
@@ -25,6 +23,10 @@ class NavbarComponent extends Component {
     const { searchName } = this.props.rootStore.vehicleContainerStore.storeData;
     const { makePage } = this.props.rootStore.mainStore.storeData;
     const { deleting } = this.props.rootStore.deleteMakeCardStore.storeData;
+    const { displayCreateNewVehicle } = this.props.rootStore.createVehicleStore;
+    const { handleDeleteClick } = this.props.rootStore.deleteMakeCardStore;
+    const { handleToggleMakeModal } = this.props.rootStore.createMakeCardStore;
+
     return (
       <div>
         <Navbar bg="light" expand="lg">
@@ -62,12 +64,7 @@ class NavbarComponent extends Component {
                     className=" mr-sm-2"
                   />
                 </Form>
-                <Button
-                  onClick={
-                    this.props.rootStore.mainStore.displayCreateNewVehicle
-                  }
-                  variant="dark"
-                >
+                <Button onClick={displayCreateNewVehicle} variant="dark">
                   New Vehicle
                 </Button>
               </>
@@ -75,20 +72,13 @@ class NavbarComponent extends Component {
               <>
                 <Button
                   className="mr-1"
-                  onClick={
-                    this.props.rootStore.deleteMakeCardStore.handleDeleteClick
-                  }
+                  onClick={handleDeleteClick}
                   variant={!deleting ? "warning" : "primary"}
                 >
                   {!deleting ? "Delete Make" : "Back"}
                 </Button>
                 {!deleting && (
-                  <Button
-                    onClick={
-                      this.props.rootStore.createMakeCardStore.handleClick
-                    }
-                    variant="dark"
-                  >
+                  <Button onClick={handleToggleMakeModal} variant="dark">
                     New Make
                   </Button>
                 )}
