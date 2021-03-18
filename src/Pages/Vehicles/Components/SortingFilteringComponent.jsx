@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // Show more icon
 import { showmore } from "../../../assetes/index";
 
+// Styles
 import "./VehicleContainer.css";
 
 import { inject, observer } from "mobx-react";
@@ -39,14 +40,14 @@ class SortingFilteringComponent extends Component {
         className="VehicleContainer-sorting-filtering"
       >
         <span
-          style={more ? { left: "0%" } : { left: "-100%" }}
+          style={more ? { left: "-100%" } : { left: "0%" }}
           className="VehicleContainer-more"
         >
           <img style={{ width: "30px" }} src={showmore} alt="show-more-img" />
         </span>
         <span id="topContainer"></span>
         <div
-          style={more ? { right: "-100%" } : { right: "0%" }}
+          style={more ? { right: "0%" } : { right: "-100%" }}
           className="VehicleContainer-options"
         >
           <div className="VehicleContainer-filtering">
@@ -56,7 +57,7 @@ class SortingFilteringComponent extends Component {
               onChange={(e) => filterByMake(e.target.value)}
               value={optionValue}
             >
-              <option>---</option>
+              <option></option>
               {makes.map((make) => {
                 return (
                   <option key={make.make} value={make.make}>
@@ -66,7 +67,7 @@ class SortingFilteringComponent extends Component {
               })}
             </select>
           </div>
-          <span onClick={() => showAll()}>
+          <span onClick={showAll}>
             Show{" "}
             {showAllVehicles
               ? showingVehicles.length < 9
@@ -74,7 +75,7 @@ class SortingFilteringComponent extends Component {
                 : "Less"
               : "All"}
           </span>
-          <span onClick={() => sortByYear()}>
+          <span onClick={sortByYear}>
             Sort by Year{" "}
             {sortingByYear ? (
               <b className="VehicleContainer-arrow">&#8593;</b>
@@ -82,7 +83,7 @@ class SortingFilteringComponent extends Component {
               <b className="VehicleContainer-arrow">&#8595;</b>
             )}
           </span>
-          <span onClick={() => sortByHorsepower()}>
+          <span onClick={sortByHorsepower}>
             Sort by Horsepower{" "}
             {sortingByHorsepower ? (
               <b className="VehicleContainer-arrow">&#8593;</b>
