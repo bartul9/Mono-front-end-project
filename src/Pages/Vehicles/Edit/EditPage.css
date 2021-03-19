@@ -1,0 +1,9 @@
+.EditPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  height: fit-content;
+}
