@@ -1,0 +1,26 @@
+.MakePage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.05);
+  min-height: 91vh;
+  padding-top: 10px;
+}
+
+.MakePage-toTop {
+  position: fixed;
+  right: -20px;
+  bottom: 10px;
+}
+
+.MakePage-toTop img {
+  width: 100px;
+  transition: 200ms;
+}
+
+.MakePage-toTop img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
