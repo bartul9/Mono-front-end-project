@@ -28,13 +28,11 @@ class MakeCard extends Component {
         }
         className="MakeCard"
       >
-        <>
-          {deleting && (
-            <Button onClick={() => deleteMakeCard(id)} variant="warning">
-              Delete
-            </Button>
-          )}
-        </>
+        {deleting && (
+          <Button onClick={() => deleteMakeCard(id)} variant="warning">
+            Delete
+          </Button>
+        )}
 
         <img src={logo} alt={make} />
         <h2>{make}</h2>
