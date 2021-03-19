@@ -15,7 +15,7 @@ class VehicleContainerStore {
     });
   }
 
-  // Function for filtering cars by make. First reset searchName input, then put showAllVehicles to be true so icons footer icons move up, put editingCard to false so if user was editing one of the cards the form dissapears on change, set postsPerPage to be 8 and currentPage to be 1 and show filtered vehicle. Also check if showingVehicles array contains more than 8 vehicles if true move footer icons back to bottom, if there is no matching vehicle show warningMessage
+  // Function for filtering cars by make. First reset searchName input, then put showAllVehicles to be true so UI changes, put editingCard to false so if user was editing one of the cards the form dissapears on change, set postsPerPage to be 8 and currentPage to be 1 and show filtered vehicle. Also check if showingVehicles array contains more than 8 vehicles if true move footer icons back to bottom, if there is no matching vehicle show warningMessage
   filterByMake = (value) => {
     this.storeData.searchName = "";
     this.rootStore.mainStore.storeData.showAllVehicles = true;
@@ -55,6 +55,7 @@ class VehicleContainerStore {
         const name = this.storeData.searchName.toLowerCase();
         const make = vehicle.make.toLowerCase().slice(0, name.length);
         const model = vehicle.model.toLowerCase().slice(0, name.length);
+
         if (this.storeData.searchName === "") {
           this.rootStore.mainStore.storeData.showAllVehicles = false;
           return this.rootStore.mainStore.vehicles;
@@ -75,6 +76,13 @@ class VehicleContainerStore {
       );
     } else {
       this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
+    }
+
+    if (
+      this.storeData.searchName === "" &&
+      this.rootStore.mainStore.vehicles.length < 9
+    ) {
+      this.rootStore.mainStore.storeData.showAllVehicles = true;
     }
   };
 
