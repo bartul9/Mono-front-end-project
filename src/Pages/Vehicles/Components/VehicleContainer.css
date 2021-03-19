@@ -1,0 +1,141 @@
+.VehicleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.VehicleContainer-filtering {
+  margin: 0px 15px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.VehicleContainer-filtering label {
+  position: relative;
+  top: 3px;
+  left: -3px;
+}
+
+.VehicleContainer-sorting-filtering {
+  color: silver;
+  background-color: rgb(58, 58, 58);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 100vw;
+  position: relative;
+  border-top: 1px solid rgba(192, 192, 192, 0.349);
+}
+
+.VehicleContainer-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  transition: 300ms;
+  transition-timing-function: ease-in-out;
+  margin-right: 25px;
+}
+
+.VehicleContainer-sorting-filtering span {
+  margin: 0px 15px;
+  font-size: 16px;
+  transition: 200ms;
+}
+
+.VehicleContainer-sorting-filtering span:hover {
+  cursor: pointer;
+  color: rgb(209, 209, 209);
+}
+
+.VehicleContainer-container {
+  padding: 50px 0px;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 96.75%;
+}
+
+.VehicleContainer-more {
+  position: absolute;
+  transition: 350ms;
+  opacity: 0;
+  transition-timing-function: ease-in-out;
+}
+#topContainer {
+  position: relative;
+  top: -20px;
+}
+
+@media (max-width: 705px) {
+  .VehicleContainer-sorting-filtering {
+    height: 45px;
+    transition: 250ms;
+    transition-timing-function: ease-in-out;
+  }
+  .VehicleContainer-more {
+    opacity: 1;
+  }
+
+  .VehicleContainer-sorting-filtering:hover {
+    height: 130px;
+  }
+  .VehicleContainer-options {
+    flex-direction: column;
+    position: absolute;
+    top: -2%;
+    right: -100%;
+    margin-right: 0;
+    margin-left: 22px;
+    transition: 250ms;
+  }
+
+  .VehicleContainer-filtering {
+    flex-direction: column;
+    height: fit-content;
+  }
+  .VehicleContainer-filtering label {
+    top: 5px;
+    left: 0px;
+  }
+}
+
+/* Make dropdown */
+
+.select-css {
+  font-size: 15px;
+  color: rgb(32, 32, 32);
+  line-height: 1.3;
+  padding: 10px 5px;
+  width: 100%;
+  min-width: 70px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 5px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url(/src/assetes/drop-down-arrow.png);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  height: 23px;
+  outline: none;
+}
+.select-css::-ms-expand {
+  display: none;
+}
