@@ -1,0 +1,10 @@
+export { default as mercedes_logo } from "./mercedes_logo.png";
+export { default as bmw_logo } from "./bmw_logo.png";
+export { default as audi_logo } from "./audi_logo.png";
+export { default as ferrari_logo } from "./ferrari_logo.png";
+export { default as lamborghini_logo } from "./lamborghini_logo.png";
+export { default as nissan_logo } from "./nissan_logo.png";
+export { default as porsche_logo } from "./porsche_logo.png";
+export { default as mitsubishi_logo } from "./mistubishi_logo.png";
+export { default as astonMartin_logo } from "./astonMartin_logo.png";
+export { default as ford_logo } from "./ford_logo.jpg";
