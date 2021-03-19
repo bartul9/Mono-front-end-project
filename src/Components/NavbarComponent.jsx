@@ -71,7 +71,7 @@ class NavbarComponent extends Component {
             ) : (
               <>
                 <Button
-                  className="mr-1"
+                  className="mr-2"
                   onClick={handleDeleteClick}
                   variant={!deleting ? "warning" : "primary"}
                 >
