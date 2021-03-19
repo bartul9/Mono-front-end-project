@@ -13,14 +13,14 @@
   position: fixed;
   right: -20px;
   bottom: 10px;
-  transition: 200ms;
 }
 
 .MakePage-toTop img {
   width: 100px;
+  transition: 200ms;
 }
 
-.MakePage-toTop:hover {
+.MakePage-toTop img:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
