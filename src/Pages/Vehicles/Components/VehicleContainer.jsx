@@ -8,8 +8,6 @@ import SortingFilteringComponent from "./SortingFilteringComponent";
 import VehicleCard from "./VehicleCard";
 import Pagination from "./Pagination";
 
-// This component serves as a container for displaying vehicles cards
-
 // Inject and Observer from mobx
 import { inject, observer } from "mobx-react";
 
