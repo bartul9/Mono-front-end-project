@@ -38,7 +38,7 @@ class CreateNewVehicleStore {
     this.updateProperty(event.target.name, event.target.value);
   };
 
-  // If all inputs are filled update vehicles array in the store with new created vehicle. Clean local state, so all inputs are empty, and state is clean, and call displayCreateNewVehicle function which closes the modal window, if there was error display warningMessage
+  // If all inputs are filled update vehicles array in the store with new created vehicle. Clean local state, so all inputs are empty, also call displayCreateNewVehicle function which closes the modal window, if there was error display warningMessage
   handleSubmit = (e) => {
     e.preventDefault();
     if (
