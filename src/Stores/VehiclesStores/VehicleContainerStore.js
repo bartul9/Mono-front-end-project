@@ -15,18 +15,19 @@ class VehicleContainerStore {
     });
   }
 
-  // Function for filtering cars by make. First reset searchName input, then put showAllVehicles to be true so paggination is gone, put editingCard to false so if user was editing one of the cards the form dissapears on change, set postsPerPage to be 8 and currentPage to be 1 and show filtered vehicle. Also check if showingVehicles array contains more than 8 vehicles if yes, include paggination, if there is no matching vehicle show warningMessage
+  // Function for filtering cars by make. First reset searchName input, then put showAllVehicles to be true so icons footer icons move up, put editingCard to false so if user was editing one of the cards the form dissapears on change, set postsPerPage to be 8 and currentPage to be 1 and show filtered vehicle. Also check if showingVehicles array contains more than 8 vehicles if true move footer icons back to bottom, if there is no matching vehicle show warningMessage
   filterByMake = (value) => {
     this.storeData.searchName = "";
     this.rootStore.mainStore.storeData.showAllVehicles = true;
     this.rootStore.vehicleCardStore.storeData.editingInputs.editingCard = false;
-    this.postsPerPage = 8;
-    this.currentPage = 1;
+    this.storeData.postsPerPage = 8;
+    this.storeData.currentPage = 1;
     this.rootStore.mainStore.storeData.showingVehicles = this.rootStore.mainStore.vehicles.filter(
       (vehicle) => {
         return vehicle.make === value;
       }
     );
+
     if (this.rootStore.mainStore.storeData.showingVehicles.length > 8) {
       this.rootStore.mainStore.storeData.showAllVehicles = false;
     }
@@ -77,7 +78,7 @@ class VehicleContainerStore {
     }
   };
 
-  // Function for showing all vehicles => First hide warningMessage if it was showing, clean searchName input, reset state in vehicleCardStore so if user was editing something and then clicked on show all while editing the state is clean. Put all vehicles in showingVehicles array, put current page to be 1 and postsPerPage to be 8 or vehicles.length depending on the showAllVehicles value, also perform check if vehicles array length is less then 9 if yes put showAllVehicles to be true so paggination is gone
+  // Function for showing all vehicles => First hide warningMessage if it was showing, clean searchName input, reset state in vehicleCardStore so if user was editing something and then clicked on show all while editing the state is clean. Put all vehicles in showingVehicles array, put current page to be 1 and postsPerPage to be 8 or vehicles.length depending on the showAllVehicles value, also perform check if vehicles array length is less then 9 if yes put showAllVehicles to be true so footer icons move up and ui changes
   showAll = () => {
     this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
     this.storeData.searchName = "";
@@ -120,8 +121,8 @@ class VehicleContainerStore {
     this.storeData.more = !this.storeData.more;
   };
 
-  // Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component but it does main clean up between switching pages is mainly connected to vehicles and vehicleContainer so I decided to put it here
-  resetData(isEditing) {
+  // Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component but it does main clean up between switching pages and it is mainly connected to vehicles and vehicleContainer so I decided to put it here
+  resetData = (isEditing) => {
     this.rootStore.mainStore.storeData.isEditing = isEditing;
     if (this.rootStore.mainStore.vehicles.length < 9) {
       this.rootStore.mainStore.storeData.showAllVehicles = true;
@@ -136,7 +137,7 @@ class VehicleContainerStore {
     this.rootStore.vehicleContainerStore.storeData.sortingByHorsepower = true;
     this.rootStore.vehicleCardStore.storeData.editingInputs.editingCard = false;
     this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
-  }
+  };
 }
 
 export default VehicleContainerStore;
