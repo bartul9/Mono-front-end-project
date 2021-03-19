@@ -1,7 +1,5 @@
 import React from "react";
 
-// Pagination component for paging the vehicles container
-
 // Styles
 import "./Pagination.css";
 
