@@ -1,6 +1,5 @@
 import { observable } from "mobx";
 
-// UUID unique ID generator for vehicles ID
 import { v4 as uuid } from "uuid";
 
 class CreateNewVehicleStore {
@@ -49,6 +48,7 @@ class CreateNewVehicleStore {
     ) {
       const vehicle = { ...this.storeData.newVehicle, id: uuid() };
       this.rootStore.mainStore.storeData.showAllVehicles = false;
+      this.rootStore.vehicleContainerStore.storeData.currentPage = 1;
       this.rootStore.mainStore.storeData.showingVehicles = [vehicle];
       this.rootStore.mainStore.vehicles.push(vehicle);
       this.displayCreateNewVehicle();
