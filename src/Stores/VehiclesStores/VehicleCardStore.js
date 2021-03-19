@@ -49,7 +49,7 @@ class VehicleCardStore {
     }
   };
 
-  // When user clicks on edit button set currentPage to be 1, set showAllVehicles to be true so paggination disapears, toggle editing card so form is displayed and put clicked vehicle into showingVehicles array
+  // When user clicks on edit button set currentPage to be 1, set showAllVehicles to be true so UI changes, toggle editing card so form is displayed and put clicked vehicle into showingVehicles array
   handleEditClick = (id) => {
     this.rootStore.vehicleContainerStore.storeData.currentPage = 1;
     this.rootStore.mainStore.storeData.showAllVehicles = true;
