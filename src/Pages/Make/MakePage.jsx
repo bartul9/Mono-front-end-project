@@ -9,7 +9,7 @@ import { makeToTop } from "../../assetes";
 // Components
 import WarningMessage from "../../Components/WarningMessage";
 import MakeCard from "./Components/MakeCard";
-import CreateMakeCard from "./Components/CreateMakeCard";
+import CreateMake from "./Components/CreateMake";
 
 import { inject, observer } from "mobx-react";
 
@@ -34,7 +34,7 @@ class MakePage extends Component {
     );
     this.props.rootStore.mainStore.storeData.makePage = false;
     this.props.rootStore.mainStore.storeData.showingVehicles = this.props.rootStore.mainStore.vehicles;
-    this.props.rootStore.deleteMakeCardStore.storeData.deleting = false;
+    this.props.rootStore.deleteMakeStore.storeData.deleting = false;
     this.props.rootStore.warningMessageStore.setWarningMessage(false, "", "");
     if (this.props.rootStore.mainStore.vehicles.length < 9) {
       this.props.rootStore.mainStore.storeData.showAllVehicles = true;
@@ -48,7 +48,7 @@ class MakePage extends Component {
     return (
       <main className="MakePage">
         <WarningMessage />
-        <CreateMakeCard />
+        <CreateMake />
         {makes.map((make) => {
           return (
             <MakeCard
