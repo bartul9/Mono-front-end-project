@@ -4,7 +4,7 @@ import VehicleCardStore from "./VehiclesStores/VehicleCardStore";
 import CreateVehicleStore from "./VehiclesStores/CreateVehicleStore";
 import MakeStore from "./MakeStores/MakeStore";
 import CreateMakeCardStore from "./MakeStores/CreateMakeCardStore";
-import SharedFunctionsStore from "./SharedFunctionsStore/SharedFunctionsStore";
+import SharedFunctionsStore from "./CommonStores/SharedFunctionsStore";
 import DeleteMakeCardStore from "./MakeStores/DeleteMakeCardStore";
 import WarningMessageStore from "./CommonStores/WarningMessageStore";
 
