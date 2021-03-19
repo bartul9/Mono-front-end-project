@@ -79,21 +79,6 @@
   top: -20px;
 }
 
-.VehicleContainer-error-msg {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.VehicleContainer-error-msg h2 {
-  font-size: 1.5rem;
-  color: rgb(31, 31, 31);
-}
-.VehicleContainer-error-msg img {
-  width: 200px;
-}
-
 @media (max-width: 705px) {
   .VehicleContainer-sorting-filtering {
     height: 45px;
@@ -127,7 +112,7 @@
   }
 }
 
-/* -------------- */
+/* Make dropdown */
 
 .select-css {
   font-size: 15px;
@@ -135,6 +120,7 @@
   line-height: 1.3;
   padding: 10px 5px;
   width: 100%;
+  min-width: 70px;
   max-width: 100%;
   box-sizing: border-box;
   margin: 0;
