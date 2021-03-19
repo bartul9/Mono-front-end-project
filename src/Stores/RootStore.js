@@ -3,16 +3,16 @@ import MainStore from "./VehiclesStores/MainStore";
 import VehicleCardStore from "./VehiclesStores/VehicleCardStore";
 import CreateVehicleStore from "./VehiclesStores/CreateVehicleStore";
 import MakeStore from "./MakeStores/MakeStore";
-import CreateMakeCardStore from "./MakeStores/CreateMakeCardStore";
+import CreateMakeStore from "./MakeStores/CreateMakeStore";
 import SharedFunctionsStore from "./CommonStores/SharedFunctionsStore";
-import DeleteMakeCardStore from "./MakeStores/DeleteMakeCardStore";
+import DeleteMakeStore from "./MakeStores/DeleteMakeStore";
 import WarningMessageStore from "./CommonStores/WarningMessageStore";
 
 class RootStore {
   constructor() {
-    this.deleteMakeCardStore = new DeleteMakeCardStore(this);
+    this.deleteMakeStore = new DeleteMakeStore(this);
     this.sharedFunctionsStore = new SharedFunctionsStore(this);
-    this.createMakeCardStore = new CreateMakeCardStore(this);
+    this.createMakeStore = new CreateMakeStore(this);
     this.makeStore = new MakeStore(this);
     this.createVehicleStore = new CreateVehicleStore(this);
     this.vehicleCardStore = new VehicleCardStore(this);
