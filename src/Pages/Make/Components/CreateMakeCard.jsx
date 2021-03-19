@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-// Component for creating new MakeCard
-
 // Bootstrap Button and Modal
 import { Button, Modal } from "react-bootstrap";
 
@@ -9,7 +7,7 @@ import { Button, Modal } from "react-bootstrap";
 import "./CreateMakeCard.css";
 
 // Country and make lists
-import countryList from "../../../Stores/CommonStores/CountriesStore";
+import countryList from "../../../Stores/CommonStores/CountriesListStore";
 import makeList from "../../../Stores/MakeStores/VehicleMakeList";
 
 import { inject, observer } from "mobx-react";
