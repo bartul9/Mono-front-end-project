@@ -22,10 +22,10 @@ class NavbarComponent extends Component {
     const { searchForName } = this.props.rootStore.vehicleContainerStore;
     const { searchName } = this.props.rootStore.vehicleContainerStore.storeData;
     const { makePage } = this.props.rootStore.mainStore.storeData;
-    const { deleting } = this.props.rootStore.deleteMakeCardStore.storeData;
+    const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
     const { displayCreateNewVehicle } = this.props.rootStore.createVehicleStore;
-    const { handleDeleteClick } = this.props.rootStore.deleteMakeCardStore;
-    const { handleToggleMakeModal } = this.props.rootStore.createMakeCardStore;
+    const { handleDeleteClick } = this.props.rootStore.deleteMakeStore;
+    const { handleToggleMakeModal } = this.props.rootStore.createMakeStore;
 
     return (
       <div>
