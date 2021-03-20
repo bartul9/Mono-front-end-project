@@ -1,7 +1,6 @@
 import { observable } from "mobx";
 
 // Disabeling forced actions so I don't have warning when I'm not using action in front of functions
-
 import { configure } from "mobx";
 configure({
   enforceActions: "never",
@@ -14,24 +13,25 @@ class VehicleContainerStore {
       showingVehicles: this.rootStore.vehicleService.getVehicles(),
       sortingByHorsepower: false,
       sortingByYear: true,
-      filteringByMake: false,
       showAllVehicles: false,
       isEditing: false,
       makePage: false,
-      more: false,
+      optionValue: "",
+      moreOptions: false,
       currentPage: 1,
       postsPerPage: 8,
       searchName: "",
     });
   }
 
-  // Function for filtering cars by make. First reset searchName input, then put showAllVehicles to be true so UI changes, put editingCard to false so if user was editing one of the cards the form dissapears on change, set postsPerPage to be 8 and currentPage to be 1 and show filtered vehicle. Also check if showingVehicles array contains more than 8 vehicles if true move footer icons back to bottom, if there is no matching vehicle show warningMessage
+  // Reset inputs and change UI, put matching vehicles in showingVehicles array, perform check if there is more than 8 vehicles with matching make, if true put showAllVehicles to false, if there is no matching vehicles show warningMessage
   filterByMake = (value) => {
     this.storeData.searchName = "";
     this.storeData.showAllVehicles = true;
     this.rootStore.vehicleCardStore.storeData.editingInputs.editingCard = false;
     this.storeData.postsPerPage = 8;
     this.storeData.currentPage = 1;
+
     this.storeData.showingVehicles = this.rootStore.vehicleService
       .getVehicles()
       .filter((vehicle) => {
@@ -53,13 +53,13 @@ class VehicleContainerStore {
     }
   };
 
-  // This function searches for vehicle by the make or model name. I sliced make or model name by the length of search name and on every input change I compared the data and return if it matches
-  // Also I performed check so if user types in something and there is no matching vehicle or make I include message so user is informed that there is no vehicles with that name
+  // Change UI, find vehicles matching searchName input and put them in showingVehicles array, if input is empty show all vehicles, if there is no matching vehicles show warningMessage
   searchForName = (e) => {
     this.rootStore.vehicleCardStore.storeData.editingInputs.editingCard = false;
     this.storeData.searchName = e.target.value;
     this.storeData.currentPage = 1;
     this.storeData.showAllVehicles = true;
+
     this.storeData.showingVehicles = this.rootStore.vehicleService
       .getVehicles()
       .filter((vehicle) => {
@@ -96,7 +96,7 @@ class VehicleContainerStore {
     }
   };
 
-  // Function for showing all vehicles => First hide warningMessage if it was showing, clean searchName input, reset state in vehicleCardStore so if user was editing something and then clicked on show all while editing the state is clean. Put all vehicles in showingVehicles array, put current page to be 1 and postsPerPage to be 8 or vehicles.length depending on the showAllVehicles value, also perform check if vehicles array length is less then 9 if yes put showAllVehicles to be true so footer icons move up and ui changes
+  // Show all vehicles or show pagination depending on showALlVehicles value, change UI and reset states
   showAll = () => {
     this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
     this.storeData.searchName = "";
@@ -104,9 +104,11 @@ class VehicleContainerStore {
     this.storeData.showAllVehicles = !this.storeData.showAllVehicles;
     this.storeData.showingVehicles = this.rootStore.vehicleService.getVehicles();
     this.storeData.currentPage = 1;
+
     this.storeData.postsPerPage = this.storeData.showAllVehicles
       ? this.rootStore.vehicleService.getVehicles().length
       : 8;
+
     if (this.rootStore.vehicleService.getVehicles().length < 9) {
       this.storeData.showAllVehicles = true;
     }
@@ -134,17 +136,19 @@ class VehicleContainerStore {
 
   // Function for toggling if users is seeing filtering options or not when he is in mobile view
   handleShowingMore = () => {
-    this.storeData.more = !this.storeData.more;
+    this.storeData.moreOptions = !this.storeData.moreOptions;
   };
 
-  // Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component but it does main clean up between switching pages and it is mainly connected to vehicles and vehicleContainer so I decided to put it here
+  // Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component, but it does main clean up between switching pages, and it is mainly connected to vehicles and vehicleContainer, so I decided to put it here
   resetData = (isEditing) => {
     this.storeData.isEditing = isEditing;
+
     if (this.rootStore.vehicleService.getVehicles().length < 9) {
       this.storeData.showAllVehicles = true;
     } else {
       this.storeData.showAllVehicles = false;
     }
+
     this.storeData.currentPage = 1;
     this.storeData.postsPerPage = 8;
     this.storeData.searchName = "";
