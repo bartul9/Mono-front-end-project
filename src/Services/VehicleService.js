@@ -1,4 +1,4 @@
-// Import images for vehicles
+// Vehicle images
 import {
   bmw_m5,
   mercedes_e55,
@@ -14,12 +14,9 @@ import {
   lamborghini_diablo,
 } from "../images/VehicleImages";
 
-// UUID unique ID generator for vehicles ID
 import { v4 as uuid } from "uuid";
 
 class VehicleService {
-  // Vehicles array
-
   vehicles = [
     {
       make: "Mercedes",
@@ -138,7 +135,7 @@ class VehicleService {
 
   editVehicle = (data) => (this.vehicles = data);
 
-  // If id was passed down to function filter trough vehicles and remove vehicle with that id. If make was passed down to function that means that user deleted so I removed all vehicles containing that make
+  // If ID was passed down to function filter trough vehicles and remove vehicle with that ID. If make was passed down to function that means that user deleted make, so I removed all vehicles containing that make
   deleteVehicle = (id, make) => {
     this.vehicles = this.vehicles.filter((vehicle) => {
       if (id) {
