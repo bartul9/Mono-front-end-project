@@ -21,10 +21,10 @@ class Edit extends Component {
   componentDidMount() {
     this.props.rootStore.vehicleContainerStore.resetData(true);
   }
-
   componentWillUnmount() {
     this.props.rootStore.vehicleContainerStore.resetData(false);
   }
+
   render() {
     return (
       <main className="EditPage">
