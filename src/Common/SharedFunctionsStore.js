@@ -6,7 +6,7 @@ class SharedFunctionsStore {
     this.storeData = observable({ scrolling: false });
   }
 
-  // Function for checking if all inputs are filled if yes return true otherwise return false and show error message
+  // Function for checking if all inputs are filled
   checkValidInputs = (inputs) => {
     const arr = Object.values(inputs);
     return arr.every((value) => value.length > 0);
