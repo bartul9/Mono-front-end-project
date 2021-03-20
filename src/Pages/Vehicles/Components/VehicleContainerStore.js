@@ -134,11 +134,11 @@ class VehicleContainerStore {
     );
   };
 
-  // Function for toggling if users is seeing filtering options or not when he is in mobile view
-  handleShowingMore = () =>
-    (this.storeData.moreOptions = !this.storeData.moreOptions);
+  // Functions for toggling if users is seeing filtering options or not when he is in mobile view
+  handleShowingMore = () => (this.storeData.moreOptions = true);
+  handleShowingLess = () => (this.storeData.moreOptions = false);
 
-  // Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component, but it does main clean up between switching pages, and it is mainly connected to vehicles and vehicleContainer, so I decided to put it here
+  //Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component, but it does main clean up between switching pages, and it is mainly connected to vehicles and vehicleContainer, so I decided to put it here
   resetData = (isEditing) => {
     this.storeData.isEditing = isEditing;
 
