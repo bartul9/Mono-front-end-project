@@ -24,10 +24,11 @@ class NavbarComponent extends Component {
       searchName,
       makePage,
     } = this.props.rootStore.vehicleContainerStore.storeData;
-    const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
     const { displayCreateNewVehicle } = this.props.rootStore.createVehicleStore;
-    const { handleDeleteClick } = this.props.rootStore.deleteMakeStore;
+
     const { handleToggleMakeModal } = this.props.rootStore.createMakeStore;
+    const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
+    const { handleDeleteClick } = this.props.rootStore.deleteMakeStore;
 
     return (
       <div>
