@@ -31,18 +31,20 @@ class VehicleCardStore {
     };
   };
 
-  // First delete selected vehicle by filtering trough vehicles array and leaving out vehicle with maching ID. Then check if showingVehicles array containes only one vehicle (that means that screen is empty and that the user deleted card while he was editing only one card), if yes then set showAllVehicles to be true and showingVehicles to contain all vehicles, then reset searchName input and check if vehicles array contains less then 9 pages, if yes put showAllVehicles to be true so pagination disapears and put current page to be equal to 1 so if the user was on the second page he jumps straight back to first page
+  // Delete selected vehicle, then check if showingVehicles array had only one vehicle in it, if true that means that user deleted vehicle while he was editing only one card, so put showAllVehicles to false, so UI is back to pagination when user deletes selected card, also perform check if there is 8 or less vehicles in array, if true change UI so pagination is gone
   deleteVehicle = (id) => {
     this.rootStore.vehicleService.deleteVehicle(id);
+
     if (
       this.rootStore.vehicleContainerStore.storeData.showingVehicles.length ===
       1
     ) {
-      this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
-      this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleContainerStore.vehicles;
+      this.rootStore.vehicleContainerStore.storeData.showAllVehicles = false;
     }
+
     this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleService.getVehicles();
     this.rootStore.vehicleContainerStore.storeData.searchName = "";
+
     if (this.rootStore.vehicleService.getVehicles().length < 9) {
       this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
       this.rootStore.vehicleContainerStore.storeData.currentPage = 1;
@@ -56,6 +58,7 @@ class VehicleCardStore {
     this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
     this.storeData.editingInputs.editingCard = !this.storeData.editingInputs
       .editingCard;
+
     this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleService
       .getVehicles()
       .filter((vehicle) => {
@@ -63,10 +66,12 @@ class VehicleCardStore {
       });
   };
 
-  // Function for editing vehicle. So, I map through all vehicles and compare edited vehicle ID to vehicle ID, if they match I merge those two objects together and keep all the data that is not empty.So if you only edited vehicle model rest of object will remain same as before because empty or undefined inputs won't merge. I used mergeWith function provided by "loadash" to do the merging.
+  // Function for editing vehicle. So, I map through all vehicles and compare edited vehicle ID to vehicle ID, if they match I merge those two objects together and keep all the data that is not empty.So if you only edited vehicle year rest of object will remain same as before because empty or undefined inputs won't merge. I used mergeWith function provided by "loadash" to do the merging.
   editVehicle = (editedVehicle, id) => {
     this.rootStore.vehicleContainerStore.storeData.searchName = "";
+
     const editingVehicle = { ...editedVehicle, id };
+
     const finalResult = this.rootStore.vehicleService
       .getVehicles()
       .map((vehicle) => {
