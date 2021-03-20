@@ -23,6 +23,7 @@ class MakeStore {
   componentWillUnmountCleanUp = () => {
     this.rootStore.vehicleContainerStore.storeData.makePage = false;
     this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleService.getVehicles();
+    this.rootStore.vehicleContainerStore.storeData.searchName = "";
 
     this.rootStore.deleteMakeStore.storeData.deleting = false;
     this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
