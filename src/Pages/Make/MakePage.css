@@ -18,9 +18,10 @@
 .MakePage-toTop img {
   width: 100px;
   transition: 200ms;
+  transform: scale(1.1);
 }
 
 .MakePage-toTop img:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
