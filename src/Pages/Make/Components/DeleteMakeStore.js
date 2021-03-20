@@ -14,13 +14,16 @@ class DeleteMakeStore {
       make.id === id &&
         this.rootStore.vehicleService.deleteVehicle(null, make.make);
     });
+
     this.rootStore.makeService.deleteMake(id);
+
     this.rootStore.makeStore.storeData.showingMakes = this.rootStore.makeService.getMakes();
   };
 
   // When user clicks on Delete Make buton toggle deleting value and change ui, also if it is true show warningMessage, if false remove it
   handleDeleteClick = () => {
     this.storeData.deleting = !this.storeData.deleting;
+
     if (this.storeData.deleting === true) {
       this.rootStore.warningMessageStore.setWarningMessage(
         true,
