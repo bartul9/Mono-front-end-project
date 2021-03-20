@@ -55,6 +55,7 @@ class SortingFilteringComponent extends Component {
               onChange={(e) => filterByMake(e.target.value)}
               value={optionValue}
             >
+              <option></option>
               {getMakes().map((make) => {
                 return (
                   <option key={make.make} value={make.make}>
