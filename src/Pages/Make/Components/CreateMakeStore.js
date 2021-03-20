@@ -1,6 +1,5 @@
 import { observable } from "mobx";
 
-// UUID for unique ID for every make
 import { v4 as uuid } from "uuid";
 
 class CreateMakeStore {
@@ -42,6 +41,7 @@ class CreateMakeStore {
   // Toggle modal display and check if there was warningMessage showing, if true clean it on close
   handleToggleMakeModal = () => {
     this.storeData.editing = !this.storeData.editing;
+
     if (!this.storeData.editing) {
       this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
       this.resetInputs();
@@ -67,12 +67,15 @@ class CreateMakeStore {
 
     // Check if first number is 0 if true return num without zero, if false return num
     const checkZero = (num) =>
-      num.toString().split("")[0] == 0 ? num[1] : num;
+      num.toString().split("")[0] === "0" ? num[1] : num;
 
     if (date.length < 5) return date;
 
     const year = date.slice(0, 4);
-    const month = months.splice(checkZero(date.slice(5, 7)) - 1, 1);
+    const month = months.slice(
+      checkZero(date.slice(5, 7)) - 1,
+      checkZero(date.slice(5, 7))
+    );
     const day = checkZero(date.slice(-2));
 
     return `${month[0]} ${day}, ${year}`;
