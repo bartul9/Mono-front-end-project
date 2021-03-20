@@ -22,7 +22,7 @@ function Pagination(props) {
 
   const linkColor = { color: "black" };
 
-  // Find the number of max pages, so I can disable previous and next buttons if pageNumber === 1 or pageNumber === maxPages
+  // Find the number of max page so I can disable previous and next buttons if pageNumber === 1 or pageNumber === maxPages
   const maxPages = Math.ceil(totalVehicles / postsPerPage);
 
   return (
