@@ -20,16 +20,16 @@ class SortingFilteringComponent extends Component {
       handleShowingMore,
     } = this.props.rootStore.vehicleContainerStore;
 
-    const { getMakes } = this.props.rootStore.makeService;
-
     const {
-      more,
+      moreOptions,
       optionValue,
       sortingByHorsepower,
       sortingByYear,
       showAllVehicles,
       showingVehicles,
     } = this.props.rootStore.vehicleContainerStore.storeData;
+
+    const { getMakes } = this.props.rootStore.makeService;
 
     return (
       <div
@@ -38,14 +38,14 @@ class SortingFilteringComponent extends Component {
         className="VehicleContainer-sorting-filtering"
       >
         <span
-          style={more ? { left: "-100%" } : { left: "0%" }}
+          style={moreOptions ? { left: "-100%" } : { left: "0%" }}
           className="VehicleContainer-more"
         >
           <img style={{ width: "30px" }} src={showmore} alt="show-more-img" />
         </span>
         <span id="topContainer"></span>
         <div
-          style={more ? { right: "0%" } : { right: "-100%" }}
+          style={moreOptions ? { right: "0%" } : { right: "-100%" }}
           className="VehicleContainer-options"
         >
           <div className="VehicleContainer-filtering">
@@ -55,7 +55,6 @@ class SortingFilteringComponent extends Component {
               onChange={(e) => filterByMake(e.target.value)}
               value={optionValue}
             >
-              <option></option>
               {getMakes().map((make) => {
                 return (
                   <option key={make.make} value={make.make}>
