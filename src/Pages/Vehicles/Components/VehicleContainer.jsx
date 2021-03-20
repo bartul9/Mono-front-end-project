@@ -23,13 +23,14 @@ class VehicleContainer extends Component {
       isEditing,
     } = this.props.rootStore.vehicleContainerStore.storeData;
 
+    // Pagination functionality
+
     const {
       paginate,
       nextPage,
       prevPage,
     } = this.props.rootStore.vehicleContainerStore;
 
-    // Pagination functionality
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentVehicles = showingVehicles.slice(
