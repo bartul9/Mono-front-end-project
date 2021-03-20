@@ -107,9 +107,6 @@
     border: 1px solid silver;
   }
 
-  .CreateNewVehicle form button {
-    border: none;
-  }
   .CreateNewVehicle form input {
     border: 1px solid silver;
   }
