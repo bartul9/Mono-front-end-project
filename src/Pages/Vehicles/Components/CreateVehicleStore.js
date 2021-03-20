@@ -71,6 +71,7 @@ class CreateNewVehicleStore {
   displayCreateNewVehicle = () => {
     this.storeData.displayingCreateNewVehicle = !this.storeData
       .displayingCreateNewVehicle;
+    this.rootStore.vehicleCardStore.resetState();
 
     if (this.storeData.displayingCreateNewVehicle === false) {
       this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
