@@ -16,7 +16,12 @@ class VehicleCard extends Component {
   render() {
     const { make, model, horsePower, image, engine, year } = this.props;
 
-    const { getMakes } = this.props.rootStore.makeService;
+    const {
+      handleChange,
+      handleEditClick,
+      handleSubmit,
+      deleteVehicle,
+    } = this.props.rootStore.vehicleCardStore;
 
     const {
       horsePowerValue,
@@ -27,14 +32,9 @@ class VehicleCard extends Component {
       editingCard,
     } = this.props.rootStore.vehicleCardStore.storeData.editingInputs;
 
-    const { isEditing } = this.props.rootStore.vehicleContainerStore.storeData;
+    const { getMakes } = this.props.rootStore.makeService;
 
-    const {
-      handleChange,
-      handleEditClick,
-      handleSubmit,
-      deleteVehicle,
-    } = this.props.rootStore.vehicleCardStore;
+    const { isEditing } = this.props.rootStore.vehicleContainerStore.storeData;
 
     return (
       <form onSubmit={(e) => handleSubmit(e, this.props.id)}>
