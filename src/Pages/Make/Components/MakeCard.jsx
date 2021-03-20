@@ -13,8 +13,9 @@ import { inject, observer } from "mobx-react";
 class MakeCard extends Component {
   render() {
     const { make, founded, logo, country, id } = this.props;
-    const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
+
     const { deleteMake } = this.props.rootStore.deleteMakeStore;
+    const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
 
     return (
       <div
