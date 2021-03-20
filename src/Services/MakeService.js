@@ -1,5 +1,4 @@
-import { v4 as uuid } from "uuid";
-
+// Make images
 import {
   mercedes_logo,
   bmw_logo,
@@ -13,9 +12,9 @@ import {
   ford_logo,
 } from "../images/MakeImages";
 
-class MakeService {
-  // ////
+import { v4 as uuid } from "uuid";
 
+class MakeService {
   makes = [
     {
       make: "BMW",
