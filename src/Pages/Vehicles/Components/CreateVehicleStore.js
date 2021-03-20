@@ -30,13 +30,10 @@ class CreateNewVehicleStore {
     this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
   };
 
-  updateProperty = (key, value) => {
-    this.storeData.newVehicle[key] = value;
-  };
+  updateProperty = (key, value) => (this.storeData.newVehicle[key] = value);
 
-  handleChange = (event) => {
+  handleChange = (event) =>
     this.updateProperty(event.target.name, event.target.value);
-  };
 
   // If all inputs are filled update vehicles array with new vehicle. Clean local state, so all inputs are empty, also call displayCreateNewVehicle function which closes the modal window, if there was error display warningMessage
   handleSubmit = (e) => {
