@@ -135,9 +135,8 @@ class VehicleContainerStore {
   };
 
   // Function for toggling if users is seeing filtering options or not when he is in mobile view
-  handleShowingMore = () => {
-    this.storeData.moreOptions = !this.storeData.moreOptions;
-  };
+  handleShowingMore = () =>
+    (this.storeData.moreOptions = !this.storeData.moreOptions);
 
   // Function for reseting the state when user enters or leaves edit page so everything works as it is supposed to. This function is called in EditPage component, but it does main clean up between switching pages, and it is mainly connected to vehicles and vehicleContainer, so I decided to put it here
   resetData = (isEditing) => {
@@ -163,9 +162,8 @@ class VehicleContainerStore {
 
   paginate = (pageNum) => (this.storeData.currentPage = pageNum);
 
-  nextPage = () => {
-    this.storeData.currentPage = this.storeData.currentPage + 1;
-  };
+  nextPage = () =>
+    (this.storeData.currentPage = this.storeData.currentPage + 1);
 
   prevPage = () =>
     (this.storeData.currentPage = this.storeData.currentPage - 1);
