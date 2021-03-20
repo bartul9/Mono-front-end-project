@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-// Component for creating new vehicle.
-
 // Styles
 import "./CreateVehicle.css";
 
@@ -16,6 +14,12 @@ import { inject, observer } from "mobx-react";
 class CreateNewVehicle extends Component {
   render() {
     const {
+      handleChange,
+      handleSubmit,
+      displayCreateNewVehicle,
+    } = this.props.rootStore.createVehicleStore;
+
+    const {
       displayingCreateNewVehicle,
     } = this.props.rootStore.createVehicleStore.storeData;
 
@@ -28,12 +32,6 @@ class CreateNewVehicle extends Component {
     } = this.props.rootStore.createVehicleStore.storeData.newVehicle;
 
     const { getMakes } = this.props.rootStore.makeService;
-
-    const {
-      handleChange,
-      handleSubmit,
-      displayCreateNewVehicle,
-    } = this.props.rootStore.createVehicleStore;
 
     const createNewForm = (
       <Modal
@@ -77,7 +75,7 @@ class CreateNewVehicle extends Component {
                   id="year"
                   type="number"
                   min={1900}
-                  max={2020}
+                  max={2021}
                 />
               </div>
               <div>
@@ -99,7 +97,7 @@ class CreateNewVehicle extends Component {
                   id="horsePower"
                   type="number"
                   min={1}
-                  max={3000}
+                  max={2000}
                 />
               </div>
             </div>
