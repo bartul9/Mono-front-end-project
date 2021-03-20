@@ -30,13 +30,11 @@ class CreateMakeStore {
     };
   };
 
-  handleToggleDateFormat = () => {
-    this.storeData.toggleDateFormat = !this.storeData.toggleDateFormat;
-  };
+  handleToggleDateFormat = () =>
+    (this.storeData.toggleDateFormat = !this.storeData.toggleDateFormat);
 
-  handleToggleMakeList = () => {
-    this.storeData.toggleMakeList = !this.storeData.toggleMakeList;
-  };
+  handleToggleMakeList = () =>
+    (this.storeData.toggleMakeList = !this.storeData.toggleMakeList);
 
   // Toggle modal display and check if there was warningMessage showing, if true clean it on close
   handleToggleMakeModal = () => {
