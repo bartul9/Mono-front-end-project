@@ -97,13 +97,10 @@ class VehicleCardStore {
     this.editVehicle(this.storeData.editingInputs, id);
   };
 
-  updateProperty = (key, value) => {
-    this.storeData.editingInputs[key] = value;
-  };
+  updateProperty = (key, value) => (this.storeData.editingInputs[key] = value);
 
-  handleChange = (evt) => {
+  handleChange = (evt) =>
     this.updateProperty(evt.target.name, evt.target.value);
-  };
 }
 
 export default VehicleCardStore;
