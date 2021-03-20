@@ -18,6 +18,7 @@ class SortingFilteringComponent extends Component {
       sortByYear,
       sortByHorsepower,
       handleShowingMore,
+      handleShowingLess,
     } = this.props.rootStore.vehicleContainerStore;
 
     const {
@@ -33,13 +34,14 @@ class SortingFilteringComponent extends Component {
 
     return (
       <div
-        onMouseEnter={handleShowingMore}
-        onMouseLeave={handleShowingMore}
-        className="VehicleContainer-sorting-filtering"
+        className={`VehicleContainer-sorting-filtering ${
+          moreOptions && "VehicleContainer-sorting-filtering-click"
+        }`}
       >
         <span
-          style={moreOptions ? { left: "-100%" } : { left: "0%" }}
-          className="VehicleContainer-more"
+          style={moreOptions ? { left: "-150%" } : { left: "18px" }}
+          id="VehicleContainer-more"
+          onClick={handleShowingMore}
         >
           <img style={{ width: "30px" }} src={showmore} alt="show-more-img" />
         </span>
@@ -89,6 +91,14 @@ class SortingFilteringComponent extends Component {
               <b className="VehicleContainer-arrow">&#8595;</b>
             )}
           </span>
+          {moreOptions && (
+            <span
+              onClick={handleShowingLess}
+              className="close-sorting-filtering"
+            >
+              Close
+            </span>
+          )}
         </div>
       </div>
     );
