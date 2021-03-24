@@ -20,6 +20,7 @@ class Edit extends Component {
   // When component mounts and unmounts clean up the container and reset all inputs
   componentDidMount() {
     this.props.rootStore.vehicleContainerStore.resetData(true);
+    this.props.props.history.push("/edit");
   }
   componentWillUnmount() {
     this.props.rootStore.vehicleContainerStore.resetData(false);
@@ -35,7 +36,7 @@ class Edit extends Component {
           textColor={"#ffc107"}
           textShadow={"2px 2px 0px #343a40"}
         />
-        <VehicleContainer />
+        <VehicleContainer props={this.props.props} />
         <FooterComponent />
       </main>
     );
