@@ -54,7 +54,10 @@ class VehicleCardStore {
 
   // When user clicks on edit button set currentPage to be 1, set showAllVehicles to be true so UI changes, toggle editing card so form is displayed and put clicked vehicle into showingVehicles array, also push that vehicle ID to Router history
   handleEditClick = (history, id) => {
-    history.push(`edit/${id}`);
+    if (history.location.pathname === "/edit") {
+      history.push(`edit/:${id}`);
+      localStorage.setItem("id", id);
+    }
 
     this.rootStore.vehicleContainerStore.storeData.moreOptions = false;
 
