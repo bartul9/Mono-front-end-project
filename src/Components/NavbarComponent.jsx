@@ -30,6 +30,12 @@ class NavbarComponent extends Component {
     const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
     const { handleDeleteClick } = this.props.rootStore.deleteMakeStore;
 
+    const {
+      editingCard,
+    } = this.props.rootStore.vehicleCardStore.storeData.editingInputs;
+
+    console.log(editingCard);
+
     return (
       <div>
         <Navbar bg="light" expand="lg">
@@ -56,21 +62,23 @@ class NavbarComponent extends Component {
             </Nav>
 
             {!makePage ? (
-              <>
-                <Form className="NavbarComponent-form" inline>
-                  <FormControl
-                    onChange={(e) => searchForName(e)}
-                    type="text"
-                    placeholder="Search Vehicle"
-                    name="searchName"
-                    value={searchName}
-                    className=" mr-sm-2"
-                  />
-                </Form>
-                <Button onClick={displayCreateNewVehicle} variant="dark">
-                  New Vehicle
-                </Button>
-              </>
+              !editingCard && (
+                <>
+                  <Form className="NavbarComponent-form" inline>
+                    <FormControl
+                      onChange={(e) => searchForName(e)}
+                      type="text"
+                      placeholder="Search Vehicle"
+                      name="searchName"
+                      value={searchName}
+                      className=" mr-sm-2"
+                    />
+                  </Form>
+                  <Button onClick={displayCreateNewVehicle} variant="dark">
+                    New Vehicle
+                  </Button>
+                </>
+              )
             ) : (
               <>
                 <Button
