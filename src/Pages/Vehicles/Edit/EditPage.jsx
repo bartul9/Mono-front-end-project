@@ -20,7 +20,19 @@ class Edit extends Component {
   // When component mounts and unmounts clean up the container and reset all inputs
   componentDidMount() {
     this.props.rootStore.vehicleContainerStore.resetData(true);
-    this.props.props.history.push("/edit");
+
+    if (localStorage.getItem("id")) {
+      this.props.rootStore.vehicleContainerStore.storeData.moreOptions = false;
+      this.props.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
+      this.props.rootStore.paginationStore.storeData.currentPage = 1;
+      this.props.rootStore.vehicleCardStore.storeData.editingInputs.editingCard = true;
+      this.props.rootStore.vehicleContainerStore.storeData.showingVehicles = this.props.rootStore.vehicleService
+        .getVehicles()
+        .filter((vehicle) => {
+          return vehicle.id === +localStorage.getItem("id");
+        });
+      this.props.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
+    }
   }
   componentWillUnmount() {
     this.props.rootStore.vehicleContainerStore.resetData(false);
