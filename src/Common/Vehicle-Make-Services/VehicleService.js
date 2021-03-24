@@ -24,7 +24,7 @@ class VehicleService {
       year: "2007",
       horsePower: "350",
       engine: "5.5 V8",
-      id: uuid(),
+      id: 1,
       img: mercedes_e55,
     },
     {
@@ -33,7 +33,7 @@ class VehicleService {
       year: "2009",
       horsePower: "483",
       engine: "4.3 V8",
-      id: uuid(),
+      id: 2,
       img: ferrari_f430,
     },
     {
@@ -42,7 +42,7 @@ class VehicleService {
       year: "2002",
       horsePower: "400",
       engine: "4.9 V8",
-      id: uuid(),
+      id: 3,
       img: bmw_m5,
     },
     {
@@ -51,7 +51,7 @@ class VehicleService {
       year: "2007",
       horsePower: "479",
       engine: "3.8 L twin-turbocharged",
-      id: uuid(),
+      id: 4,
       img: nissan_r35,
     },
 
@@ -61,7 +61,7 @@ class VehicleService {
       year: "2003",
       horsePower: "510",
       engine: "5.9 V12",
-      id: uuid(),
+      id: 5,
       img: astonMartin_db9,
     },
     {
@@ -70,7 +70,7 @@ class VehicleService {
       year: "2005",
       horsePower: "287",
       engine: "2.0 L ",
-      id: uuid(),
+      id: 6,
       img: misthubishi_evo9,
     },
     {
@@ -79,7 +79,7 @@ class VehicleService {
       year: "2017",
       horsePower: "602",
       engine: "5.2 L V10",
-      id: uuid(),
+      id: 7,
       img: lamborghini_huracan,
     },
     {
@@ -88,7 +88,7 @@ class VehicleService {
       year: "2011",
       horsePower: "691",
       engine: "3.8 L twin-turbocharged",
-      id: uuid(),
+      id: 8,
       img: porsche_991,
     },
     {
@@ -97,7 +97,7 @@ class VehicleService {
       year: "2017",
       horsePower: "577",
       engine: "5.5L twin-turbo V8",
-      id: uuid(),
+      id: 9,
       img: mercedes_cls_63,
     },
     {
@@ -106,7 +106,7 @@ class VehicleService {
       year: "2020",
       horsePower: "563",
       engine: "4.0 V8",
-      id: uuid(),
+      id: 10,
       img: audi_s8,
     },
     {
@@ -115,7 +115,7 @@ class VehicleService {
       year: "2014",
       horsePower: "731",
       engine: "6.3 V12",
-      id: uuid(),
+      id: 11,
       img: ferrari_f12,
     },
     {
@@ -124,7 +124,7 @@ class VehicleService {
       year: "1990",
       horsePower: "510",
       engine: "6.0 L V12",
-      id: uuid(),
+      id: 12,
       img: lamborghini_diablo,
     },
   ];
