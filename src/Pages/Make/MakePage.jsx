@@ -3,13 +3,12 @@ import React, { Component } from "react";
 // Styles
 import "./MakePage.css";
 
-// To top icon
-import { makeToTop } from "../../assetes";
-
 // Components
 import WarningMessage from "../../Components/WarningMessage";
 import MakeCard from "./Components/MakeCard";
 import CreateMake from "./Components/CreateMake";
+import Pagination from "../../Components/Pagination";
+import Footer from "../../Components/FooterComponent";
 
 import { inject, observer } from "mobx-react";
 
@@ -25,28 +24,29 @@ class MakePage extends Component {
   }
   render() {
     const { showingMakes } = this.props.rootStore.makeStore.storeData;
-    const { scrolling } = this.props.rootStore.sharedFunctionsStore.storeData;
+    const { countItems } = this.props.rootStore.paginationStore;
+
     return (
       <main className="MakePage">
         <WarningMessage />
         <CreateMake />
-        {showingMakes.map((make) => {
-          return (
-            <MakeCard
-              id={make.id}
-              key={make.id}
-              make={make.make}
-              founded={make.founded}
-              country={make.country}
-              logo={make.logo}
-            />
-          );
-        })}
-        {scrolling && (
-          <a className="MakePage-toTop" href="#top">
-            <img src={makeToTop} alt="" />
-          </a>
-        )}
+        <div className="MakeContainer">
+          {countItems(showingMakes).map((make) => {
+            return (
+              <MakeCard
+                id={make.id}
+                key={make.id}
+                make={make.make}
+                founded={make.founded}
+                country={make.country}
+                logo={make.logo}
+              />
+            );
+          })}
+        </div>
+
+        {showingMakes.length > 8 && <Pagination />}
+        <Footer />
       </main>
     );
   }
