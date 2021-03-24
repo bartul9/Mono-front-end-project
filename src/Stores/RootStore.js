@@ -1,15 +1,16 @@
-import VehicleService from "../Services/VehicleService";
+import VehicleService from "../Common/Vehicle-Make-Services/VehicleService";
 import VehicleContainerStore from "../Pages/Vehicles/Components/VehicleContainerStore";
 import VehicleCardStore from "../Pages/Vehicles/Components/VehicleCardStore";
 import CreateVehicleStore from "../Pages/Vehicles/Components/CreateVehicleStore";
 
-import MakeService from "../Services/MakeService";
+import MakeService from "../Common/Vehicle-Make-Services/MakeService";
 import MakeStore from "../Pages/Make/MakeStore";
 import CreateMakeStore from "../Pages/Make/Components/CreateMakeStore";
 import DeleteMakeStore from "../Pages/Make/Components/DeleteMakeStore";
 
 import WarningMessageStore from "../Components/WarningMessageStore";
 import SharedFunctionsStore from "../Common/SharedFunctionsStore";
+import PaginationStore from "../Components/PaginationStore";
 
 class RootStore {
   constructor() {
@@ -25,6 +26,7 @@ class RootStore {
 
     this.warningMessageStore = new WarningMessageStore(this);
     this.sharedFunctionsStore = new SharedFunctionsStore(this);
+    this.paginationStore = new PaginationStore(this);
   }
 }
 
