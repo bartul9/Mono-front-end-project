@@ -17,6 +17,7 @@ import { inject, observer } from "mobx-react";
 class MakePage extends Component {
   componentDidMount() {
     this.props.rootStore.makeStore.componentDidMountSetData();
+    localStorage.clear();
   }
 
   componentWillUnmount() {
