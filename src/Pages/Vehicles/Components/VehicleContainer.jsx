@@ -23,10 +23,6 @@ class VehicleContainer extends Component {
 
     const { countItems } = this.props.rootStore.paginationStore;
 
-    const {
-      editingCard,
-    } = this.props.rootStore.vehicleCardStore.storeData.editingInputs;
-
     return (
       <section className="VehicleContainer">
         <SortingFilteringComponent />
