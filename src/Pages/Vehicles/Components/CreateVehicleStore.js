@@ -45,7 +45,7 @@ class CreateNewVehicleStore {
       )
     ) {
       this.rootStore.vehicleContainerStore.storeData.showAllVehicles = false;
-      this.rootStore.vehicleContainerStore.storeData.currentPage = 1;
+      this.rootStore.paginationStore.storeData.currentPage = 1;
 
       const vehicle = { ...this.storeData.newVehicle, id: uuid() };
       this.rootStore.vehicleService.addVehicle(vehicle);
