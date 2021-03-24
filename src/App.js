@@ -23,7 +23,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" render={() => <HomePage />} />
-          <Route exact path="/edit" render={() => <EditPage />} />
+          <Route path="/edit" render={(props) => <EditPage props={props} />} />
           <Route exact path="/make" render={() => <MakePage />} />
         </Switch>
       </div>
