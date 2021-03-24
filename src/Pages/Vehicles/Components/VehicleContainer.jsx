@@ -6,7 +6,7 @@ import "./VehicleContainer.css";
 // Components
 import SortingFilteringComponent from "./SortingFilteringComponent";
 import VehicleCard from "./VehicleCard";
-import Pagination from "./Pagination";
+import Pagination from "../../../Components/Pagination";
 
 // Inject and Observer from mobx
 import { inject, observer } from "mobx-react";
@@ -16,33 +16,22 @@ import { inject, observer } from "mobx-react";
 class VehicleContainer extends Component {
   render() {
     const {
-      postsPerPage,
-      currentPage,
       showAllVehicles,
       showingVehicles,
       isEditing,
     } = this.props.rootStore.vehicleContainerStore.storeData;
 
-    // Pagination functionality
+    const { countItems } = this.props.rootStore.paginationStore;
 
     const {
-      paginate,
-      nextPage,
-      prevPage,
-    } = this.props.rootStore.vehicleContainerStore;
-
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentVehicles = showingVehicles.slice(
-      indexOfFirstPost,
-      indexOfLastPost
-    );
+      editingCard,
+    } = this.props.rootStore.vehicleCardStore.storeData.editingInputs;
 
     return (
       <section className="VehicleContainer">
         <SortingFilteringComponent />
         <div className="VehicleContainer-container">
-          {currentVehicles.map((vehicle) => {
+          {countItems(showingVehicles).map((vehicle) => {
             return (
               <VehicleCard
                 key={vehicle.id}
@@ -54,22 +43,12 @@ class VehicleContainer extends Component {
                 year={vehicle.year}
                 image={vehicle.img}
                 editing={isEditing}
+                props={this.props.props}
               />
             );
           })}
         </div>
-        {showAllVehicles
-          ? ""
-          : showingVehicles.length > 8 && (
-              <Pagination
-                currentPage={currentPage}
-                postsPerPage={postsPerPage}
-                totalVehicles={showingVehicles.length}
-                paginate={paginate}
-                nextPage={nextPage}
-                prevPage={prevPage}
-              />
-            )}
+        {!showAllVehicles && showingVehicles.length > 8 && <Pagination />}
       </section>
     );
   }
