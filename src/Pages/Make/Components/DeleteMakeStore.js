@@ -18,6 +18,11 @@ class DeleteMakeStore {
     this.rootStore.makeService.deleteMake(id);
 
     this.rootStore.makeStore.storeData.showingMakes = this.rootStore.makeService.getMakes();
+
+    if (this.rootStore.makeStore.storeData.showingMakes.length < 9) {
+      this.rootStore.paginationStore.storeData.currentPage = 1;
+      this.rootStore.paginationStore.storeData.showAll = true;
+    }
   };
 
   // When user clicks on Delete Make buton toggle deleting value and change ui, also if it is true show warningMessage, if false remove it
