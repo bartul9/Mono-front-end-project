@@ -12,31 +12,37 @@ import { inject, observer } from "mobx-react";
 @observer
 class FooterComponent extends Component {
   render() {
+    const { showAll } = this.props.rootStore.paginationStore.storeData;
     const {
-      wrongSearchInputs,
-      showingVehicles,
       showAllVehicles,
+      showingVehicles,
     } = this.props.rootStore.vehicleContainerStore.storeData;
+
+    const noIcon = showingVehicles.length === 0;
 
     const footer = (
       <footer className="FooterComponent">
         <span
-          style={showAllVehicles ? { bottom: "49px" } : { bottom: "" }}
+          style={
+            showAll || showAllVehicles ? { bottom: "49px" } : { bottom: "" }
+          }
           className="VehicleContainer-racing-flag"
         ></span>
         <a
-          style={showAllVehicles ? { bottom: "55px" } : { bottom: "" }}
+          style={
+            showAll || showAllVehicles ? { bottom: "55px" } : { bottom: "" }
+          }
           className="FooterComponent-toTop"
           href="#top"
         >
-          <img src={backToTop} alt="to-top-page" />
+          {!noIcon && <img src={backToTop} alt="to-top-page" />}
         </a>
         <p>
           Built by <i>Luka Bartulović</i> for <i>Mono</i>
         </p>
       </footer>
     );
-    return !wrongSearchInputs && showingVehicles.length > 0 && footer;
+    return footer;
   }
 }
 export default FooterComponent;
