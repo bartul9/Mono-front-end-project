@@ -47,15 +47,20 @@ class VehicleCardStore {
 
     if (this.rootStore.vehicleService.getVehicles().length < 9) {
       this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
-      this.rootStore.vehicleContainerStore.storeData.currentPage = 1;
-      this.rootStore.vehicleContainerStore.storeData.postsPerPage = 8;
+      this.rootStore.paginationStore.storeData.currentPage = 1;
+      this.rootStore.paginationStore.storeData.postsPerPage = 8;
     }
   };
 
-  // When user clicks on edit button set currentPage to be 1, set showAllVehicles to be true so UI changes, toggle editing card so form is displayed and put clicked vehicle into showingVehicles array
-  handleEditClick = (id) => {
-    this.rootStore.vehicleContainerStore.storeData.currentPage = 1;
+  // When user clicks on edit button set currentPage to be 1, set showAllVehicles to be true so UI changes, toggle editing card so form is displayed and put clicked vehicle into showingVehicles array, also push that vehicle ID to Router history
+  handleEditClick = (history, id) => {
+    history.push(`edit/${id}`);
+
+    this.rootStore.vehicleContainerStore.storeData.moreOptions = false;
+
     this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
+    this.rootStore.paginationStore.storeData.currentPage = 1;
+
     this.storeData.editingInputs.editingCard = !this.storeData.editingInputs
       .editingCard;
 
@@ -64,6 +69,15 @@ class VehicleCardStore {
       .filter((vehicle) => {
         return vehicle.id === id;
       });
+
+    if (this.storeData.editingInputs.editingCard === false) {
+      this.rootStore.vehicleContainerStore.storeData.showAllVehicles = false;
+      this.rootStore.paginationStore.storeData.currentPage = 1;
+      this.rootStore.paginationStore.storeData.postsPerPage = 8;
+      this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleService.getVehicles();
+
+      history.push("/edit");
+    }
   };
 
   // Function for editing vehicle. So, I map through all vehicles and compare edited vehicle ID to vehicle ID, if they match I merge those two objects together and keep all the data that is not empty.So if you only edited vehicle year rest of object will remain same as before because empty or undefined inputs won't merge. I used mergeWith function provided by "loadash" to do the merging.
@@ -79,9 +93,6 @@ class VehicleCardStore {
           const result = mergeWith({}, vehicle, editingVehicle, (a, b) =>
             b === "" ? a : undefined
           );
-          this.rootStore.vehicleContainerStore.storeData.showingVehicles = [
-            result,
-          ];
           return result;
         }
         return vehicle;
@@ -89,11 +100,18 @@ class VehicleCardStore {
 
     this.rootStore.vehicleService.editVehicle(finalResult);
 
+    this.rootStore.vehicleContainerStore.storeData.showAllVehicles = false;
+    this.rootStore.paginationStore.storeData.currentPage = 1;
+    this.rootStore.paginationStore.storeData.postsPerPage = 8;
+    this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleService.getVehicles();
+
     this.resetState();
   };
 
-  handleSubmit = (evt, id) => {
+  handleSubmit = (evt, history, id) => {
     evt.preventDefault();
+
+    history.push("/edit");
     this.editVehicle(this.storeData.editingInputs, id);
   };
 
