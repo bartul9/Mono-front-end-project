@@ -37,7 +37,11 @@ class VehicleCard extends Component {
     const { isEditing } = this.props.rootStore.vehicleContainerStore.storeData;
 
     return (
-      <form onSubmit={(e) => handleSubmit(e, this.props.id)}>
+      <form
+        onSubmit={(e) =>
+          handleSubmit(e, this.props.props.history, this.props.id)
+        }
+      >
         <article
           style={
             isEditing
@@ -154,7 +158,9 @@ class VehicleCard extends Component {
                     style={
                       editingCard ? { left: 63 + "px" } : { left: 67 + "px" }
                     }
-                    onClick={() => handleEditClick(this.props.id)}
+                    onClick={() =>
+                      handleEditClick(this.props.props.history, this.props.id)
+                    }
                   >
                     {editingCard ? "Back" : "Edit"}
                   </Button>
