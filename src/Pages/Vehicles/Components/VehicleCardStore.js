@@ -60,7 +60,7 @@ class VehicleCardStore {
     }
 
     this.rootStore.vehicleContainerStore.storeData.moreOptions = false;
-
+    this.rootStore.vehicleContainerStore.storeData.searchName = "";
     this.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
     this.rootStore.paginationStore.storeData.currentPage = 1;
 
