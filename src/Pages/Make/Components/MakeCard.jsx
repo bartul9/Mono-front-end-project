@@ -12,7 +12,7 @@ import { inject, observer } from "mobx-react";
 @observer
 class MakeCard extends Component {
   render() {
-    const { make, founded, logo, country } = this.props;
+    const { make, founded, logo, country, id } = this.props;
 
     const { deleteMake } = this.props.rootStore.deleteMakeStore;
     const { deleting } = this.props.rootStore.deleteMakeStore.storeData;
@@ -30,7 +30,7 @@ class MakeCard extends Component {
         className="MakeCard"
       >
         {deleting && (
-          <Button onClick={() => deleteMake(make)} variant="warning">
+          <Button onClick={() => deleteMake(id)} variant="warning">
             Delete
           </Button>
         )}
