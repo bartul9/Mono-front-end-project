@@ -9,13 +9,13 @@ class DeleteMakeStore {
   }
 
   // When user deletes one of the make cards filter trough the makes and leave out make equal to selected make, also filter trough vehicles array and remove all vehicles with deleted make
-  deleteMake = (id) => {
+  deleteMake = (make) => {
     this.rootStore.makeService.getMakes().forEach((make) => {
-      make.id === id &&
+      make.make === make &&
         this.rootStore.vehicleService.deleteVehicle(null, make.make);
     });
 
-    this.rootStore.makeService.deleteMake(id);
+    this.rootStore.makeService.deleteMake(make);
 
     this.rootStore.makeStore.storeData.showingMakes = this.rootStore.makeService.getMakes();
 
