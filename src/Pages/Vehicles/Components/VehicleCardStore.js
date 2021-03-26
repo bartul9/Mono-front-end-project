@@ -79,6 +79,8 @@ class VehicleCardStore {
       this.rootStore.paginationStore.storeData.postsPerPage = 8;
       this.rootStore.vehicleContainerStore.storeData.showingVehicles = this.rootStore.vehicleService.getVehicles();
 
+      localStorage.clear();
+
       history.push("/edit");
     }
   };
