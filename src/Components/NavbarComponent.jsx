@@ -34,8 +34,6 @@ class NavbarComponent extends Component {
       editingCard,
     } = this.props.rootStore.vehicleCardStore.storeData.editingInputs;
 
-    console.log(editingCard);
-
     return (
       <div>
         <Navbar bg="light" expand="lg">
