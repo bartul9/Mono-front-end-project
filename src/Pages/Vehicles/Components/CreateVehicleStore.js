@@ -47,7 +47,16 @@ class CreateNewVehicleStore {
       this.rootStore.vehicleContainerStore.storeData.showAllVehicles = false;
       this.rootStore.paginationStore.storeData.currentPage = 1;
 
-      const vehicle = { ...this.storeData.newVehicle, id: uuid() };
+      const makeId = this.rootStore.makeService
+        .getMakes()
+        .filter((make) => make.make === this.storeData.newVehicle.make)[0].id;
+
+      const vehicle = {
+        ...this.storeData.newVehicle,
+        make: this.rootStore.vehicleService.connectMakeAndVehicles(makeId)[0]
+          .make,
+        id: uuid(),
+      };
       this.rootStore.vehicleService.addVehicle(vehicle);
       this.rootStore.vehicleContainerStore.storeData.showingVehicles = [
         vehicle,
