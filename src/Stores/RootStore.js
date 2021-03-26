@@ -14,12 +14,13 @@ import PaginationStore from "../Components/PaginationStore";
 
 class RootStore {
   constructor() {
+    this.makeService = new MakeService(this);
     this.vehicleService = new VehicleService(this);
+
     this.vehicleContainerStore = new VehicleContainerStore(this);
     this.vehicleCardStore = new VehicleCardStore(this);
     this.createVehicleStore = new CreateVehicleStore(this);
 
-    this.makeService = new MakeService(this);
     this.makeStore = new MakeStore(this);
     this.createMakeStore = new CreateMakeStore(this);
     this.deleteMakeStore = new DeleteMakeStore(this);
