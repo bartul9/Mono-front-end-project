@@ -34,6 +34,7 @@ class Edit extends Component {
       this.props.rootStore.vehicleContainerStore.storeData.showAllVehicles = true;
     }
   }
+
   componentWillUnmount() {
     this.props.rootStore.vehicleContainerStore.resetData(false);
   }
