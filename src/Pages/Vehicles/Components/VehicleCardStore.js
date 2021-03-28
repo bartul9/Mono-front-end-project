@@ -117,6 +117,9 @@ class VehicleCardStore {
     evt.preventDefault();
 
     history.push("/edit");
+
+    localStorage.clear();
+
     this.editVehicle(this.storeData.editingInputs, id);
   };
 
