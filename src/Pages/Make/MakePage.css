@@ -15,6 +15,12 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  min-height: 73.6vh;
+  min-height: 83.2vh;
   min-width: 50%;
+}
+
+@media (max-width: 469px) {
+  .MakeContainer {
+    padding-bottom: 50px;
+  }
 }
