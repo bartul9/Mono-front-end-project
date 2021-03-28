@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 // Function for merging two objects provided by "loadash"
-import { mergeWith } from "lodash";
+import { mergeWith, flow } from "lodash";
 
 class VehicleCardStore {
   constructor(rootStore) {
@@ -85,7 +85,7 @@ class VehicleCardStore {
     }
   };
 
-  // Function for editing vehicle. So, I map through all vehicles and compare edited vehicle ID to vehicle ID, if they match I merge those two objects together and keep all the data that is not empty.So if you only edited vehicle year rest of object will remain same as before because empty or undefined inputs won't merge. I used mergeWith function provided by "loadash" to do the merging.
+  // Function for editing vehicle. So, I map through all vehicles and compare edited vehicle ID to vehicle ID, if they match I merge those two objects together and keep all the data that is not empty.So if you only edited vehicle year rest of object will remain same as before because empty or undefined inputs won't merge. Also i cleand duplicates with flow function also provided by loadash and I used mergeWith function provided by "loadash" to do the merging.
   editVehicle = (editedVehicle, id) => {
     this.rootStore.vehicleContainerStore.storeData.searchName = "";
 
@@ -98,8 +98,16 @@ class VehicleCardStore {
           const result = mergeWith({}, vehicle, editingVehicle, (a, b) =>
             b === "" ? a : undefined
           );
-          return result;
+
+          const cleanResult = flow([
+            Object.entries,
+            (arr) => arr.filter(([key, value]) => value !== ""),
+            Object.fromEntries,
+          ])(result);
+
+          return cleanResult;
         }
+
         return vehicle;
       });
 
