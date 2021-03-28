@@ -133,7 +133,7 @@ class VehicleService {
   connectMakeAndVehicles = (id) =>
     this.rootStore.makeService
       .getMakes()
-      .filter((make) => (make.id === id ? make.make : null));
+      .filter((make) => make.id === id && make.make);
 
   getVehicles = () => this.vehicles;
 
