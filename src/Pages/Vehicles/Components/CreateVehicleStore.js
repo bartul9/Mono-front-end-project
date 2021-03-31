@@ -8,7 +8,7 @@ class CreateNewVehicleStore {
     this.storeData = observable({
       displayingCreateNewVehicle: false,
       newVehicle: {
-        make: "",
+        makeId: "",
         model: "",
         year: "",
         engine: "",
@@ -20,7 +20,7 @@ class CreateNewVehicleStore {
 
   resetInputs = () => {
     this.storeData.newVehicle = {
-      make: "",
+      makeId: "",
       model: "",
       year: "",
       engine: "",
@@ -47,14 +47,10 @@ class CreateNewVehicleStore {
       this.rootStore.vehicleContainerStore.storeData.showAllVehicles = false;
       this.rootStore.paginationStore.storeData.currentPage = 1;
 
-      const makeId = this.rootStore.makeService
-        .getMakes()
-        .filter((make) => make.make === this.storeData.newVehicle.make)[0].id;
+      console.log(this.storeData.newVehicle);
 
       const vehicle = {
         ...this.storeData.newVehicle,
-        make: this.rootStore.vehicleService.connectMakeAndVehicles(makeId)[0]
-          .make,
         id: uuid(),
       };
       this.rootStore.vehicleService.addVehicle(vehicle);
