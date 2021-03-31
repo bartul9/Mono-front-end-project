@@ -70,7 +70,7 @@ class SortingFilteringComponent extends Component {
                 <option></option>
                 {getMakes().map((make) => {
                   return (
-                    <option key={make.make} value={make.make}>
+                    <option key={make.make} value={make.id}>
                       {make.make}
                     </option>
                   );
