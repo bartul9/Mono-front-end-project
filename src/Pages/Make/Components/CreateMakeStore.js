@@ -106,6 +106,7 @@ class CreateMakeStore {
           founded: this.changeDateFormat(this.storeData.makeData.founded),
           id: uuid(),
         });
+
         this.resetInputs();
         this.rootStore.makeStore.storeData.showingMakes = this.rootStore.makeService.getMakes();
         this.rootStore.warningMessageStore.setWarningMessage(false, "", "");
