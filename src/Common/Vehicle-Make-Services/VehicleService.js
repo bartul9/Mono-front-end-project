@@ -19,7 +19,7 @@ class VehicleService {
     this.rootStore = rootStore;
     this.vehicles = [
       {
-        make: this.connectMakeAndVehicles(2)[0].make,
+        makeId: "2",
         model: "E55 AMG",
         year: "2007",
         horsePower: "350",
@@ -28,7 +28,7 @@ class VehicleService {
         img: mercedes_e55,
       },
       {
-        make: this.connectMakeAndVehicles(4)[0].make,
+        makeId: "4",
         model: "F430 Scuderia",
         year: "2009",
         horsePower: "483",
@@ -37,7 +37,7 @@ class VehicleService {
         img: ferrari_f430,
       },
       {
-        make: this.connectMakeAndVehicles(1)[0].make,
+        makeId: "1",
         model: "E39 M5",
         year: "2002",
         horsePower: "400",
@@ -46,7 +46,7 @@ class VehicleService {
         img: bmw_m5,
       },
       {
-        make: this.connectMakeAndVehicles(7)[0].make,
+        makeId: "7",
         model: "r35 GTR",
         year: "2007",
         horsePower: "479",
@@ -56,7 +56,7 @@ class VehicleService {
       },
 
       {
-        make: this.connectMakeAndVehicles(9)[0].make,
+        makeId: "9",
         model: "DB9",
         year: "2003",
         horsePower: "510",
@@ -65,7 +65,7 @@ class VehicleService {
         img: astonMartin_db9,
       },
       {
-        make: this.connectMakeAndVehicles(8)[0].make,
+        makeId: "8",
         model: "Lancer EVO 9",
         year: "2005",
         horsePower: "287",
@@ -74,7 +74,7 @@ class VehicleService {
         img: misthubishi_evo9,
       },
       {
-        make: this.connectMakeAndVehicles(5)[0].make,
+        makeId: "5",
         model: "Huracan",
         year: "2017",
         horsePower: "602",
@@ -83,7 +83,7 @@ class VehicleService {
         img: lamborghini_huracan,
       },
       {
-        make: this.connectMakeAndVehicles(6)[0].make,
+        makeId: "6",
         model: "991 GT2",
         year: "2011",
         horsePower: "691",
@@ -92,7 +92,7 @@ class VehicleService {
         img: porsche_991,
       },
       {
-        make: this.connectMakeAndVehicles(2)[0].make,
+        makeId: "2",
         model: "CLS 63 AMG",
         year: "2017",
         horsePower: "577",
@@ -101,7 +101,7 @@ class VehicleService {
         img: mercedes_cls_63,
       },
       {
-        make: this.connectMakeAndVehicles(3)[0].make,
+        makeId: "3",
         model: "S8",
         year: "2020",
         horsePower: "563",
@@ -110,7 +110,7 @@ class VehicleService {
         img: audi_s8,
       },
       {
-        make: this.connectMakeAndVehicles(4)[0].make,
+        makeId: "4",
         model: "F12 Berlinetta",
         year: "2014",
         horsePower: "731",
@@ -119,7 +119,7 @@ class VehicleService {
         img: ferrari_f12,
       },
       {
-        make: this.connectMakeAndVehicles(5)[0].make,
+        makeId: "5",
         model: "Diablo",
         year: "1990",
         horsePower: "510",
@@ -130,11 +130,6 @@ class VehicleService {
     ];
   }
 
-  connectMakeAndVehicles = (id) =>
-    this.rootStore.makeService
-      .getMakes()
-      .filter((make) => make.id === id && make.make);
-
   getVehicles = () => this.vehicles;
 
   addVehicle = (data) => this.vehicles.push(data);
@@ -142,13 +137,13 @@ class VehicleService {
   editVehicle = (data) => (this.vehicles = data);
 
   // If ID was passed down to function filter trough vehicles and remove vehicle with that ID. If make was passed down to function that means that user deleted make, so I removed all vehicles containing that make
-  deleteVehicle = (id, make) => {
+  deleteVehicle = (id, makeId) => {
     this.vehicles = this.vehicles.filter((vehicle) => {
       if (id) {
         return vehicle.id !== id;
       }
-      if (make) {
-        return vehicle.make !== make;
+      if (makeId) {
+        return vehicle.makeId !== makeId;
       }
       return vehicle;
     });
