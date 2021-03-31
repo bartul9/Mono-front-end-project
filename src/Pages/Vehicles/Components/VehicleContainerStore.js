@@ -33,7 +33,7 @@ class VehicleContainerStore {
     this.storeData.showingVehicles = this.rootStore.vehicleService
       .getVehicles()
       .filter((vehicle) => {
-        return vehicle.make === value;
+        return vehicle.makeId === value;
       });
 
     if (this.storeData.showingVehicles.length === 0) {
@@ -58,7 +58,7 @@ class VehicleContainerStore {
       .getVehicles()
       .filter((vehicle) => {
         const name = this.storeData.searchName.toLowerCase();
-        const make = vehicle.make.toLowerCase().slice(0, name.length);
+
         const model = vehicle.model.toLowerCase().slice(0, name.length);
 
         if (this.storeData.searchName === "") {
@@ -66,7 +66,7 @@ class VehicleContainerStore {
           return this.rootStore.vehicleService.getVehicles();
         }
 
-        return make === name || model === name;
+        return model === name;
       });
 
     if (
