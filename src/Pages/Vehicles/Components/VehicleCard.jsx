@@ -14,7 +14,7 @@ import { inject, observer } from "mobx-react";
 @observer
 class VehicleCard extends Component {
   render() {
-    const { make, model, horsePower, image, engine, year } = this.props;
+    const { makeId, model, horsePower, image, engine, year } = this.props;
 
     const {
       handleChange,
@@ -36,6 +36,10 @@ class VehicleCard extends Component {
 
     const { isEditing } = this.props.rootStore.vehicleContainerStore.storeData;
 
+    const make = getMakes().filter((make) => make.id === makeId)[0]
+      ? getMakes().filter((make) => make.id === makeId)[0].make
+      : null;
+
     return (
       <form
         onSubmit={(e) =>
@@ -50,7 +54,7 @@ class VehicleCard extends Component {
           }
           className="VehicleCard"
         >
-          <img src={image} alt={`${make}-${model}`} />{" "}
+          <img src={image} alt={`${makeId}-${model}`} />{" "}
           {editingCard && (
             <input
               id="VehicleCard-image-input"
@@ -67,14 +71,18 @@ class VehicleCard extends Component {
               className="VehicleCard-make-model"
             >
               {editingCard ? (
-                <select onChange={(e) => handleChange(e)} name="make" id="make">
-                  <option defaultValue={make}>{make}</option>
+                <select
+                  onChange={(e) => handleChange(e)}
+                  name="makeId"
+                  id="makeId"
+                >
+                  <option defaultValue={makeId}>{make}</option>
                   {getMakes().map((makes) => {
-                    if (makes.make === make) {
+                    if (makes.id === makeId) {
                       return null;
                     }
                     return (
-                      <option value={makes.make} key={makes.make}>
+                      <option value={+makes.id} key={makes.id}>
                         {makes.make}
                       </option>
                     );
