@@ -66,7 +66,7 @@ class NavbarComponent extends Component {
                     <FormControl
                       onChange={(e) => searchForName(e)}
                       type="text"
-                      placeholder="Search Vehicle"
+                      placeholder="Search Vehicle Model"
                       name="searchName"
                       value={searchName}
                       className=" mr-sm-2"
