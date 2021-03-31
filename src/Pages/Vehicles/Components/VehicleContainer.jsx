@@ -32,7 +32,7 @@ class VehicleContainer extends Component {
               <VehicleCard
                 key={vehicle.id}
                 id={vehicle.id}
-                make={vehicle.make}
+                makeId={vehicle.makeId}
                 model={vehicle.model}
                 horsePower={vehicle.horsePower}
                 engine={vehicle.engine}
