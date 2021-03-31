@@ -45,10 +45,14 @@ class CreateNewVehicle extends Component {
             <div className="CreateNewVehicle-inputs">
               <div>
                 <label htmlFor="make">Make</label>
-                <select onChange={(e) => handleChange(e)} name="make" id="make">
+                <select
+                  onChange={(e) => handleChange(e)}
+                  name="makeId"
+                  id="makeId"
+                >
                   <option></option>
                   {getMakes().map((make) => (
-                    <option value={make.value} key={make.make}>
+                    <option value={make.id} key={make.id}>
                       {make.make}
                     </option>
                   ))}
