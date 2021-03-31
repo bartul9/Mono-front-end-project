@@ -12,7 +12,7 @@ class DeleteMakeStore {
   deleteMake = (id) => {
     this.rootStore.makeService.getMakes().forEach((make) => {
       make.id === id &&
-        this.rootStore.vehicleService.deleteVehicle(null, make.make);
+        this.rootStore.vehicleService.deleteVehicle(null, make.id);
     });
 
     this.rootStore.makeService.deleteMake(id);
